@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="progress_bar_clr">#7CBB00</color>
+    <color name="floating_icon">#4885ed</color>
+    <color name="main_categories">#f1f5f8</color>
 </resources>

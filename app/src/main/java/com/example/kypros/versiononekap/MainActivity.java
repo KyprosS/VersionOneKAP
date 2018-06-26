@@ -1,54 +1,55 @@
 package com.example.kypros.versiononekap;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.GridView;
 import android.widget.Toast;
+import com.melnykov.fab.FloatingActionButton;
+import android.app.Activity;
 
-public class MainActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
+public class MainActivity extends Activity {
+
     boolean doubleBackToExitPressedOnce = false;
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
-                    return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
-                    return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
-                    return true;
-            }
-            return false;
-        }
-    };
+    FloatingActionButton floatingSearchIcon;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        //Grid View declaration
+        GridView gridView = (GridView) findViewById(R.id.grid_view);
+        gridView.setAdapter(new ImageAdapter(this));
+
+
+
+
+        //On Search button click jump to activity SearchResults START ------------------------------
+        floatingSearchIcon = (FloatingActionButton) findViewById(R.id.floatingSearchIcon);
+
+        floatingSearchIcon.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+
+                Intent myIntent = new Intent(MainActivity.this,
+                        SearchResults.class);
+                startActivity(myIntent);
+            }
+        });
+        //On Search button click jump to activity SearchResults END --------------------------------
+
+
+
+
     }
 
 
 
 
-
-//DISABLE BACK BUTTON TO GO TO WELCOME SCREEN START------------------------------------------------------------
+//DISABLE BACK BUTTON TO GO TO WELCOME SCREEN START-------------------------------------------------
     @Override
     public void onBackPressed() {
 
@@ -68,10 +69,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }, 2000);
     }
-//DISABLE BACK BUTTON TO GO TO WELCOME SCREEN END------------------------------------------------------------
-
-
-
+//DISABLE BACK BUTTON TO GO TO WELCOME SCREEN END---------------------------------------------------
 
 
 

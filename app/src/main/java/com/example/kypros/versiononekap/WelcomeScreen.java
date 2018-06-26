@@ -4,8 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ProgressBar;
@@ -20,16 +18,8 @@ public class WelcomeScreen extends AppCompatActivity {
         setContentView(R.layout.activity_welcome_screen);
 
 
-
         //PROGRESS BAR ANIMATION STARTS-------------------------------------------------------------
         progressBarWelcome = (ProgressBar) findViewById(R.id.progressBarWelcome);
-
-
-
-
-
-
-
 
         ValueAnimator animator = ValueAnimator.ofInt(0, progressBarWelcome.getMax());
         animator.setDuration(3000);
@@ -49,6 +39,7 @@ public class WelcomeScreen extends AppCompatActivity {
         animator.start();
         //PROGRESS BAR ANIMATION END----------------------------------------------------------------
 
+
         //ACTIVITY TIMER STARTS---------------------------------------------------------------------
         Thread timerThread = new Thread(){
             public void run(){
@@ -64,12 +55,6 @@ public class WelcomeScreen extends AppCompatActivity {
         };
         timerThread.start();
         //ACTIVITY TIMER END------------------------------------------------------------------------
-
-
-
-
-
-
 
     }
 }
