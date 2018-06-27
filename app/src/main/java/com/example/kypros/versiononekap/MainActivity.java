@@ -3,6 +3,7 @@ package com.example.kypros.versiononekap;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.GridView;
@@ -15,6 +16,8 @@ public class MainActivity extends Activity {
 
     boolean doubleBackToExitPressedOnce = false;
     FloatingActionButton floatingSearchIcon;
+    SwipeRefreshLayout mySwipeRefreshLayout;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,9 +29,7 @@ public class MainActivity extends Activity {
         gridView.setAdapter(new ImageAdapter(this));
 
 
-
-
-        //On Search button click jump to activity SearchResults START ------------------------------
+        //OnClick Search button jump to activity SearchResults START ------------------------------
         floatingSearchIcon = (FloatingActionButton) findViewById(R.id.floatingSearchIcon);
 
         floatingSearchIcon.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +42,21 @@ public class MainActivity extends Activity {
         });
         //On Search button click jump to activity SearchResults END --------------------------------
 
+
+
+        //DRAG DOWN TO REFRESH LAYOUT STARTS--------------------------------------------------------
+        mySwipeRefreshLayout = (SwipeRefreshLayout)this.findViewById(R.id.swipeContainer);
+
+        mySwipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        finish();
+                        startActivity(getIntent());
+                    }
+                }
+        );
+        //DRAG DOWN TO REFRESH LAYOUT ENDS----------------------------------------------------------
 
 
 

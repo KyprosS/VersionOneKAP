@@ -18,6 +18,19 @@ public class WelcomeScreen extends AppCompatActivity {
         setContentView(R.layout.activity_welcome_screen);
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+/*
         //PROGRESS BAR ANIMATION STARTS-------------------------------------------------------------
         progressBarWelcome = (ProgressBar) findViewById(R.id.progressBarWelcome);
 
@@ -33,12 +46,12 @@ public class WelcomeScreen extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                // start your activity here
+
             }
         });
         animator.start();
         //PROGRESS BAR ANIMATION END----------------------------------------------------------------
-
+*/
 
         //ACTIVITY TIMER STARTS---------------------------------------------------------------------
         Thread timerThread = new Thread(){
