@@ -9,21 +9,47 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:supportsRtl="true">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".WelcomeScreen"
-            android:noHistory="true"> <!-- DON'T GO BACK TO WELCOME SCREEN WHEN BACK IS PRESSED -->
+            android:noHistory="true"
+            android:theme="@style/WelcomeScreen"> <!-- DON'T GO BACK TO WELCOME SCREEN WHEN BACK IS PRESSED -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SearchResults"></activity>
+        <activity
+            android:name=".SearchResults"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ProfileActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".MyServicesActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".AddNewServiceActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".FavoritesActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".SettingsActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".SignInActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".HelpFeedbackActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".SignUpActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

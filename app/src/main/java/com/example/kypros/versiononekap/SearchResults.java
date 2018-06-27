@@ -1,11 +1,12 @@
 package com.example.kypros.versiononekap;
 
+import android.app.Activity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.SearchView;
 
-public class SearchResults extends AppCompatActivity {
+public class SearchResults extends Activity {
 
     SearchView searchBar;
     SwipeRefreshLayout mySwipeRefreshLayoutSearch;
