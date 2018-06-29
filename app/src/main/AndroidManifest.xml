@@ -48,8 +48,12 @@
         <activity
             android:name=".HelpFeedbackActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".SignUpActivity"
+        <activity
+            android:name=".SignUpActivity"
             android:theme="@style/AppTheme" />
+        <activity android:name=".ChildCategoriesDynamicActivity" />
+        <activity android:name=".ListServicesDynamicActivity" />
+        <activity android:name=".DisplayServiceDynamicActivity"></activity>
     </application>
 
 </manifest>

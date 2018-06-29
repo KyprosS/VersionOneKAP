@@ -1,0 +1,13 @@
+package com.example.kypros.versiononekap;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+public class ChildCategoriesDynamicActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_child_categories_dynamic);
+    }
+}
