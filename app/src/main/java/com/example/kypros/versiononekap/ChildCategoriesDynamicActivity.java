@@ -3,7 +3,6 @@ package com.example.kypros.versiononekap;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 import android.widget.GridView;
@@ -15,6 +14,11 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        String parent_id = getIntent().getStringExtra("PARENT_ID");
+
+        System.out.print(parent_id);
+
 
         //Grid View declaration
         GridView gridView = (GridView) findViewById(R.id.grid_view);

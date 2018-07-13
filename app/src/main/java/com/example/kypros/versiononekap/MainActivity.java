@@ -7,6 +7,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Toast;
 import com.melnykov.fab.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -21,6 +22,62 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ImageView img = (ImageView) findViewById(R.id.technicians_cat);
+        img.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                int sessionId = 1;
+
+                Intent myIntent = new Intent(getBaseContext(), ChildCategoriesDynamicActivity.class);
+                myIntent.putExtra("PARENT_ID", sessionId);
+
+                startActivity(myIntent);
+            }
+        });
+
+        ImageView img2 = (ImageView) findViewById(R.id.emergencies_cat);
+        img2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                int sessionId = 2;
+
+                Intent myIntent = new Intent(getBaseContext(), ChildCategoriesDynamicActivity.class);
+                myIntent.putExtra("PARENT_ID", sessionId);
+
+                startActivity(myIntent);
+            }
+        });
+
+        ImageView img3 = (ImageView) findViewById(R.id.household_cat);
+        img3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                int sessionId = 3;
+
+                Intent myIntent = new Intent(getBaseContext(), ChildCategoriesDynamicActivity.class);
+                myIntent.putExtra("PARENT_ID", sessionId);
+
+                startActivity(myIntent);
+            }
+        });
+
+        ImageView img4 = (ImageView) findViewById(R.id.others_cat);
+        img4.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                int sessionId = 4;
+
+                Intent myIntent = new Intent(getBaseContext(), ChildCategoriesDynamicActivity.class);
+                myIntent.putExtra("PARENT_ID", sessionId);
+
+                startActivity(myIntent);
+            }
+        });
+
+
+
+
 
 
         //ADD BURGER MENU DYNAMICALY START ---------------------------------------------------------
