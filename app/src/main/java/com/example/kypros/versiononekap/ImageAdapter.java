@@ -43,6 +43,7 @@ public class ImageAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
+
         return 0;
     }
 
@@ -55,5 +56,13 @@ public class ImageAdapter extends BaseAdapter {
 
         return imageView;
     }
+
+
+
+
+
+
+
+
 
 }

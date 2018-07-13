@@ -6,6 +6,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.FrameLayout;
+import android.widget.GridView;
 
 public class ChildCategoriesDynamicActivity extends BaseActivity {
 
@@ -14,6 +15,12 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Grid View declaration
+        GridView gridView = (GridView) findViewById(R.id.grid_view);
+        gridView.setAdapter(new ImageAdapter(this));
+
+
 
         //ADD BURGER MENU DYNAMICALY START ---------------------------------------------------------
         FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);

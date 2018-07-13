@@ -31,9 +31,7 @@ public class MainActivity extends BaseActivity {
         //ADD BURGER MENU END ----------------------------------------------------------------------
 
 
-        //Grid View declaration
-        GridView gridView = (GridView) findViewById(R.id.grid_view);
-        gridView.setAdapter(new ImageAdapter(this));
+
 
 
         //OnClick Search button jump to activity SearchResults START ------------------------------
