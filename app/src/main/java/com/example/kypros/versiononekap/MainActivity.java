@@ -1,12 +1,12 @@
 package com.example.kypros.versiononekap;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.melnykov.fab.FloatingActionButton;
@@ -18,13 +18,21 @@ public class MainActivity extends BaseActivity {
     FloatingActionButton floatingSearchIcon;
     SwipeRefreshLayout mySwipeRefreshLayout;
 
+    ImageView imVtechnicians_cat;
+    ImageView imVemergencies_cat;
+    ImageView imVhousehold_cat;
+    ImageView imVothers_cat;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ImageView img = (ImageView) findViewById(R.id.technicians_cat);
-        img.setOnClickListener(new View.OnClickListener() {
+        imVtechnicians_cat = (ImageView) findViewById(R.id.technicians_cat);
+        imVtechnicians_cat.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 int sessionId = 1;
@@ -36,8 +44,8 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        ImageView img2 = (ImageView) findViewById(R.id.emergencies_cat);
-        img2.setOnClickListener(new View.OnClickListener() {
+        imVemergencies_cat = (ImageView) findViewById(R.id.emergencies_cat);
+        imVemergencies_cat.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 int sessionId = 2;
@@ -49,8 +57,8 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        ImageView img3 = (ImageView) findViewById(R.id.household_cat);
-        img3.setOnClickListener(new View.OnClickListener() {
+        imVhousehold_cat = (ImageView) findViewById(R.id.household_cat);
+        imVhousehold_cat.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 int sessionId = 3;
@@ -62,8 +70,8 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        ImageView img4 = (ImageView) findViewById(R.id.others_cat);
-        img4.setOnClickListener(new View.OnClickListener() {
+        imVothers_cat = (ImageView) findViewById(R.id.others_cat);
+        imVothers_cat.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 int sessionId = 4;
