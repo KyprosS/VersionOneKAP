@@ -102,8 +102,6 @@ public class BaseActivity extends AppCompatActivity {
         });
 
 
-
-
     }//END onCreate
 
     @Override

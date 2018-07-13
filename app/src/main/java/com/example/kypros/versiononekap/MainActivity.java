@@ -10,17 +10,12 @@ import android.widget.GridView;
 import android.widget.Toast;
 import com.melnykov.fab.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 
 public class MainActivity extends BaseActivity {
 
     boolean doubleBackToExitPressedOnce = false;
     FloatingActionButton floatingSearchIcon;
     SwipeRefreshLayout mySwipeRefreshLayout;
-    private DrawerLayout dl;
-    private ActionBarDrawerToggle t;
-    private NavigationView nv;
 
 
     @Override
@@ -36,7 +31,6 @@ public class MainActivity extends BaseActivity {
         //ADD BURGER MENU END ----------------------------------------------------------------------
 
 
-
         //Grid View declaration
         GridView gridView = (GridView) findViewById(R.id.grid_view);
         gridView.setAdapter(new ImageAdapter(this));
@@ -48,8 +42,7 @@ public class MainActivity extends BaseActivity {
         floatingSearchIcon.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
 
-                Intent myIntent = new Intent(MainActivity.this,
-                        SearchResults.class);
+                Intent myIntent = new Intent(MainActivity.this, SearchResults.class);
                 startActivity(myIntent);
             }
         });
@@ -74,12 +67,6 @@ public class MainActivity extends BaseActivity {
 
 
     }//onCreate ENDS HERE
-
-
-
-
-
-
 
 
 

@@ -16,10 +16,7 @@ public class ImageAdapter extends BaseAdapter {
     public Integer[] mThumbIds = {
             R.drawable.test_icon_1, R.drawable.test_icon_2,
             R.drawable.test_icon_3, R.drawable.test_icon_4,
-            R.drawable.test_icon_1, R.drawable.test_icon_2,
-            R.drawable.test_icon_3, R.drawable.test_icon_4,
-            R.drawable.test_icon_1, R.drawable.test_icon_2,
-            R.drawable.test_icon_3, R.drawable.test_icon_4,
+
 
            /* R.drawable.pic_5, R.drawable.pic_6,
             R.drawable.pic_7, R.drawable.pic_8,
