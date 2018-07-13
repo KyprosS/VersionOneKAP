@@ -1,9 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".AddNewServiceActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/content"
+        tools:ignore="UselessParent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/edtTitle"
+                    android:hint="Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/white"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:inputType="text"
+                    app:met_baseColor="@color/white"
+                    app:met_floatingLabel="highlight"
+                    app:met_primaryColor="@color/white"
+                    app:met_singleLineEllipsis="true"
+                    />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/edtDescription"
+                    android:hint="Description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/white"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:inputType="textMultiLine"
+                    app:met_baseColor="@color/white"
+                    app:met_floatingLabel="highlight"
+                    app:met_primaryColor="@color/white"
+                    app:met_singleLineEllipsis="true"
+                    />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/edtPrice"
+                    android:hint="Price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/white"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:inputType="number"
+                    app:met_baseColor="@color/white"
+                    app:met_floatingLabel="highlight"
+                    app:met_primaryColor="@color/white"
+                    app:met_singleLineEllipsis="true"
+                    />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/edtDiscount"
+                    android:hint="Discount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/colorPrimary"
+                    android:text=""
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="34sp"
+                    android:inputType="number"
+                    app:met_baseColor="@color/colorPrimary"
+                    app:met_floatingLabel="highlight"
+                    app:met_primaryColor="@color/colorPrimary"
+                    app:met_singleLineEllipsis="true"
+                    />
+
+
+                <LinearLayout
+                    android:weightSum="2"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <info.hoang8f.widget.FButton
+                        android:id="@+id/btnSelect"
+                        android:text="SELECT"
+                        android:background="@color/colorPrimary"
+                        android:textColor="@android:color/white"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_margin="8dp"
+                        android:layout_height="wrap_content"
+                        app:fButtonColor="@color/colorPrimary"
+                        app:shadowColor="#000"
+                        app:shadowEnabled="true"
+                        app:shadowHeight="5dp"
+                        app:cornerRadius="5dp"
+                        />
+
+                    <info.hoang8f.widget.FButton
+                        android:id="@+id/btnUpload"
+                        android:text="UPLOAD"
+                        android:textColor="@android:color/white"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_margin="8dp"
+                        android:layout_height="wrap_content"
+                        app:fButtonColor="#797979"
+                        app:shadowColor="#000"
+                        app:shadowEnabled="true"
+                        app:shadowHeight="5dp"
+                        app:cornerRadius="5dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+
+
+    </FrameLayout>
+</LinearLayout>
+
+
+
+
+
+
+

@@ -1,36 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/profile"
-        android:icon="@drawable/ic_account_circle_black_24dp"
-        android:textColor="@color/white"
-        android:title="Profile"/>
+        <group>
+                <item android:id="@+id/main_categories"
+                    android:icon="@drawable/ic_store_black_24dp"
+                    android:title="Main Categories"/>
 
-    <item android:id="@+id/my_services"
-        android:icon="@drawable/ic_insert_chart_black_24dp"
-        android:title="My Services"/>
+                <item android:id="@+id/profile"
+                    android:icon="@drawable/ic_account_circle_black_24dp"
+                    android:title="Profile"/>
 
-    <item android:id="@+id/add_new_services"
-        android:icon="@drawable/ic_add_black_24dp"
-        android:title="Add new Service"/>
+                <item android:id="@+id/my_services"
+                    android:icon="@drawable/ic_insert_chart_black_24dp"
+                    android:title="My Services"/>
 
-    <item android:id="@+id/favorites"
-        android:icon="@drawable/ic_favorite_black_24dp"
-        android:title="Favorites"/>
+                <item android:id="@+id/add_new_services"
+                    android:icon="@drawable/ic_add_black_24dp"
+                    android:title="Add new Service"/>
+
+                <item android:id="@+id/favorites"
+                    android:icon="@drawable/ic_favorite_black_24dp"
+                    android:title="Favorites"/>
 
 
-    <item android:id="@+id/settings"
-        android:icon="@drawable/ic_settings_black_24dp"
-        android:title="Settings"/>
+                <item android:id="@+id/settings"
+                    android:icon="@drawable/ic_settings_black_24dp"
+                    android:title="Settings"/>
 
-    <item android:id="@+id/sign_in"
-        android:icon="@drawable/ic_exit_to_app_black_24dp"
-        android:title="@string/Login_logout"/>
+                <item android:id="@+id/sign_in"
+                    android:icon="@drawable/ic_exit_to_app_black_24dp"
+                    android:title="@string/Login_logout"/>
 
-    <item android:id="@+id/sign_up"
-        android:icon="@drawable/ic_person_add_black_24dp"
-        android:title="Sign Up"/>
+                <item android:id="@+id/sign_up"
+                    android:icon="@drawable/ic_person_add_black_24dp"
+                    android:title="Sign Up"/>
 
-    <item android:id="@+id/help_feedback"
-        android:icon="@drawable/ic_help_black_24dp"
-        android:title="@string/help_feedback"/>
+                <item android:id="@+id/help_feedback"
+                    android:icon="@drawable/ic_help_black_24dp"
+                    android:title="@string/help_feedback"/>
+        </group>
 </menu>

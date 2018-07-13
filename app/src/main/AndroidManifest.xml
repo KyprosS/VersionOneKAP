@@ -51,9 +51,13 @@
         <activity
             android:name=".SignUpActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ChildCategoriesDynamicActivity" />
-        <activity android:name=".ListServicesDynamicActivity" />
-        <activity android:name=".DisplayServiceDynamicActivity"></activity>
+        <activity android:name=".ChildCategoriesDynamicActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ListServicesDynamicActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".DisplayServiceDynamicActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".BaseActivity"/>
     </application>
 
 </manifest>

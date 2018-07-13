@@ -1,29 +1,31 @@
 package com.example.kypros.versiononekap;
 
-import android.app.Activity;
+import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.SearchView;
+import android.widget.FrameLayout;
 
-public class SearchResults extends Activity {
+public class SearchResults extends BaseActivity {
 
-    SearchView searchBar;
     SwipeRefreshLayout mySwipeRefreshLayoutSearch;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_results);
 
-        SearchView searchBar= (SearchView) findViewById(R.id.searchBar);
+        //ADD BURGER MENU DYNAMICALY START ---------------------------------------------------------
+        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
+        getLayoutInflater().inflate(R.layout.activity_search_results, contentFrameLayout);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.getMenu().getItem(0).setChecked(true);
+        //ADD BURGER MENU END ----------------------------------------------------------------------
 
-        searchBar.setQueryHint("Search your service...");
 
 
 
         //DRAG DOWN TO REFRESH LAYOUT STARTS--------------------------------------------------------
-        mySwipeRefreshLayoutSearch = (SwipeRefreshLayout)this.findViewById(R.id.swipe_layout_search);
+        mySwipeRefreshLayoutSearch = (SwipeRefreshLayout)this.findViewById(R.id.swipeContainer);
 
         mySwipeRefreshLayoutSearch.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
