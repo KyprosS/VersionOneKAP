@@ -39,6 +39,7 @@ public class MainActivity extends BaseActivity {
         //ADD BURGER MENU END ----------------------------------------------------------------------
 
 
+        //BEGIN SET SESSION ID AND IMAGEVIEWS TO ANOTHER ACTIVITY-------------------------------------------
         imVtechnicians_cat = (ImageView) findViewById(R.id.technicians_cat);
         imVtechnicians_cat.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -90,6 +91,8 @@ public class MainActivity extends BaseActivity {
                 startActivity(myIntent);
             }
         });
+
+        //END SET SESSION ID AND IMAGEVIEWS TO ANOTHER ACTIVITY-------------------------------------------
 
 
 

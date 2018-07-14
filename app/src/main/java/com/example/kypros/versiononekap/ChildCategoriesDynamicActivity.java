@@ -30,9 +30,6 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
         Integer parent_id = mIntent.getIntExtra("PARENT_ID", 0);
 
 
-        //sdgfdasgsdg
-
-
 
         Log.d("THIS!!!!!!!!!!!!!!!!!!!", "Value: " + parent_id);
 
@@ -42,8 +39,6 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
         //Grid View declaration
         GridView gridView = (GridView) findViewById(R.id.grid_view);
         gridView.setAdapter(new ImageAdapter(this));
-
-
 
 
 
