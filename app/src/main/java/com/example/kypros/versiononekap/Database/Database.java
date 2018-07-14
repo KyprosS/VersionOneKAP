@@ -6,11 +6,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Database extends SQLiteAssetHelper {
 
-    private static final String DB_NAME = "Igonia_DB.db";
+    private static final String DB_NAME = "services4uDB.db";
     private static final int DB_VER = 1;
 
     public Database(Context context) {
