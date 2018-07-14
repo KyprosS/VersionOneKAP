@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -24,12 +25,19 @@ public class MainActivity extends BaseActivity {
     ImageView imVothers_cat;
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        //ADD BURGER MENU DYNAMICALY START ---------------------------------------------------------
+        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
+        getLayoutInflater().inflate(R.layout.activity_main, contentFrameLayout);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.getMenu().getItem(0).setChecked(true); //Highlight selected item in menu
+        //ADD BURGER MENU END ----------------------------------------------------------------------
+
 
         imVtechnicians_cat = (ImageView) findViewById(R.id.technicians_cat);
         imVtechnicians_cat.setOnClickListener(new View.OnClickListener() {
@@ -82,18 +90,6 @@ public class MainActivity extends BaseActivity {
                 startActivity(myIntent);
             }
         });
-
-
-
-
-
-
-        //ADD BURGER MENU DYNAMICALY START ---------------------------------------------------------
-        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
-        getLayoutInflater().inflate(R.layout.activity_main, contentFrameLayout);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.getMenu().getItem(0).setChecked(true); //Highlight selected item in menu
-        //ADD BURGER MENU END ----------------------------------------------------------------------
 
 
 
