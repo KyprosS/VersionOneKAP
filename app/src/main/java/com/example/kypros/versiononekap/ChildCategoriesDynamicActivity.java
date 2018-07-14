@@ -1,6 +1,7 @@
 package com.example.kypros.versiononekap;
 
 import android.content.Intent;
+import android.database.SQLException;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -8,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.GridView;
+
+import java.io.IOException;
 
 public class ChildCategoriesDynamicActivity extends BaseActivity {
 
@@ -29,9 +32,29 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
         Intent mIntent = getIntent();
         Integer parent_id = mIntent.getIntExtra("PARENT_ID", 0);
 
+        //Log.d("THIS!!!!!!!!!!!!!!!!!!!", "Value: " + parent_id);
 
 
-        Log.d("THIS!!!!!!!!!!!!!!!!!!!", "Value: " + parent_id);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

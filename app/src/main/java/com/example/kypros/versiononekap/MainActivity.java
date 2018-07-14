@@ -1,12 +1,10 @@
 package com.example.kypros.versiononekap;
 
 import android.content.Intent;
-import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -14,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import com.melnykov.fab.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+
+import java.io.IOException;
 
 public class MainActivity extends BaseActivity {
 
@@ -66,8 +66,6 @@ public class MainActivity extends BaseActivity {
 
                 Intent myIntent = new Intent(getBaseContext(), ChildCategoriesDynamicActivity.class);
                 myIntent.putExtra("PARENT_ID", sessionId);
-
-
 
                 startActivity(myIntent);
             }
@@ -129,7 +127,6 @@ public class MainActivity extends BaseActivity {
             }
         });
         //On Search button click jump to activity SearchResults END --------------------------------
-
 
 
 
