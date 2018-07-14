@@ -21,7 +21,6 @@ public class ListServicesDynamicActivity extends BaseActivity {
         navigationView.getMenu().getItem(2).setChecked(true);
         //ADD BURGER MENU END ----------------------------------------------------------------------
 
-
         //DRAG DOWN TO REFRESH LAYOUT STARTS--------------------------------------------------------
         mySwipeRefreshLayoutSearch = (SwipeRefreshLayout) this.findViewById(R.id.swipeContainer);
 
@@ -35,5 +34,18 @@ public class ListServicesDynamicActivity extends BaseActivity {
                 }
         );
         //DRAG DOWN TO REFRESH LAYOUT ENDS----------------------------------------------------------
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }//END onCreate
 }

@@ -1,6 +1,8 @@
 package com.example.kypros.versiononekap;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
@@ -24,6 +26,8 @@ public class MainActivity extends BaseActivity {
     ImageView imVhousehold_cat;
     ImageView imVothers_cat;
 
+    SQLiteDatabase database;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,20 @@ public class MainActivity extends BaseActivity {
         navigationView.getMenu().getItem(0).setChecked(true); //Highlight selected item in menu
         //ADD BURGER MENU END ----------------------------------------------------------------------
 
+        //DRAG DOWN TO REFRESH LAYOUT STARTS--------------------------------------------------------
+        mySwipeRefreshLayout = (SwipeRefreshLayout)this.findViewById(R.id.swipeContainer);
+
+        mySwipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        finish();
+                        startActivity(getIntent());
+                    }
+                }
+        );
+        //DRAG DOWN TO REFRESH LAYOUT ENDS----------------------------------------------------------
+
 
         //BEGIN SET SESSION ID AND IMAGEVIEWS TO ANOTHER ACTIVITY-------------------------------------------
         imVtechnicians_cat = (ImageView) findViewById(R.id.technicians_cat);
@@ -48,6 +66,8 @@ public class MainActivity extends BaseActivity {
 
                 Intent myIntent = new Intent(getBaseContext(), ChildCategoriesDynamicActivity.class);
                 myIntent.putExtra("PARENT_ID", sessionId);
+
+
 
                 startActivity(myIntent);
             }
@@ -112,19 +132,7 @@ public class MainActivity extends BaseActivity {
 
 
 
-        //DRAG DOWN TO REFRESH LAYOUT STARTS--------------------------------------------------------
-        mySwipeRefreshLayout = (SwipeRefreshLayout)this.findViewById(R.id.swipeContainer);
 
-        mySwipeRefreshLayout.setOnRefreshListener(
-                new SwipeRefreshLayout.OnRefreshListener() {
-                    @Override
-                    public void onRefresh() {
-                        finish();
-                        startActivity(getIntent());
-                    }
-                }
-        );
-        //DRAG DOWN TO REFRESH LAYOUT ENDS----------------------------------------------------------
 
 
 
