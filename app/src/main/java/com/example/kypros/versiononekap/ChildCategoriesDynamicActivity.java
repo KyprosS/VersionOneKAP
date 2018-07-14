@@ -30,7 +30,7 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
         Integer parent_id = mIntent.getIntExtra("PARENT_ID", 0);
 
 
-        
+        //sdgfdasgsdg
 
 
 
