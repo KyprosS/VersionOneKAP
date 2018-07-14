@@ -1,5 +1,6 @@
 package com.example.kypros.versiononekap;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -23,9 +24,13 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
         navigationView.getMenu().getItem(0).setChecked(true);
         //ADD BURGER MENU END ----------------------------------------------------------------------
 
-        Integer parent_id = getIntent().getIntExtra();
 
-        //System.out.print(parent_id);
+
+        Intent mIntent = getIntent();
+        Integer parent_id = mIntent.getIntExtra("PARENT_ID", 0);
+
+
+        
 
 
 
