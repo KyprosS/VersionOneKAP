@@ -1,23 +1,20 @@
 package com.example.kypros.versiononekap;
 
 import android.content.Intent;
-import android.database.SQLException;
-import android.support.annotation.Nullable;
+import android.database.Cursor;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.FrameLayout;
-import android.widget.GridView;
 
-import java.io.IOException;
+import android.widget.FrameLayout;
 
 public class ChildCategoriesDynamicActivity extends BaseActivity {
 
     SwipeRefreshLayout mySwipeRefreshLayoutSearch;
 
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //ADD BURGER MENU DYNAMICALY START ---------------------------------------------------------
@@ -38,31 +35,12 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*
 
         //Grid View declaration
         GridView gridView = (GridView) findViewById(R.id.grid_view);
         gridView.setAdapter(new ImageAdapter(this));
-
+*/
 
 
 
@@ -80,4 +58,7 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
         );
         //DRAG DOWN TO REFRESH LAYOUT ENDS----------------------------------------------------------
     }
+
+
+
 }

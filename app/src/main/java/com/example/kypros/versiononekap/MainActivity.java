@@ -1,7 +1,6 @@
 package com.example.kypros.versiononekap;
 
 import android.content.Intent;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,8 +11,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import com.melnykov.fab.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-
-import java.io.IOException;
 
 public class MainActivity extends BaseActivity {
 
@@ -26,13 +23,10 @@ public class MainActivity extends BaseActivity {
     ImageView imVhousehold_cat;
     ImageView imVothers_cat;
 
-    SQLiteDatabase database;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         //ADD BURGER MENU DYNAMICALY START ---------------------------------------------------------
         FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
@@ -41,6 +35,13 @@ public class MainActivity extends BaseActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.getMenu().getItem(0).setChecked(true); //Highlight selected item in menu
         //ADD BURGER MENU END ----------------------------------------------------------------------
+
+
+
+
+
+
+
 
         //DRAG DOWN TO REFRESH LAYOUT STARTS--------------------------------------------------------
         mySwipeRefreshLayout = (SwipeRefreshLayout)this.findViewById(R.id.swipeContainer);
@@ -57,7 +58,7 @@ public class MainActivity extends BaseActivity {
         //DRAG DOWN TO REFRESH LAYOUT ENDS----------------------------------------------------------
 
 
-        //BEGIN SET SESSION ID AND IMAGEVIEWS TO ANOTHER ACTIVITY-------------------------------------------
+        //BEGIN SET SESSION ID AND IMAGEVIEWS TO ANOTHER ACTIVITY-----------------------------------
         imVtechnicians_cat = (ImageView) findViewById(R.id.technicians_cat);
         imVtechnicians_cat.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
