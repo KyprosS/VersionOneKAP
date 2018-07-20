@@ -37,79 +37,57 @@ public class BaseActivity extends AppCompatActivity {
                     case R.id.main_categories:
                         Intent myIntent0 = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(myIntent0);
-
                         drawerLayout.closeDrawers();
                         break;
-
                     case R.id.profile:
                         Intent myIntent = new Intent(getApplicationContext(), ProfileActivity.class);
                         startActivity(myIntent);
-
                         drawerLayout.closeDrawers();
                         break;
-
                     case R.id.my_services:
                         Intent myIntent2 = new Intent(getApplicationContext(), MyServicesActivity.class);
                         startActivity(myIntent2);
-
                         drawerLayout.closeDrawers();
                         break;
-
                     case R.id.add_new_services:
                         Intent myIntent3 = new Intent(getApplicationContext(), AddNewServiceActivity.class);
                         startActivity(myIntent3);
-
                         drawerLayout.closeDrawers();
                         break;
-
                     case R.id.favorites:
                         Intent myIntent4 = new Intent(getApplicationContext(), FavoritesActivity.class);
                         startActivity(myIntent4);
-
                         drawerLayout.closeDrawers();
                         break;
-
                     case R.id.settings:
                         Intent myIntent5 = new Intent(getApplicationContext(), SettingsActivity.class);
                         startActivity(myIntent5);
-
                         drawerLayout.closeDrawers();
                         break;
-
                     case R.id.sign_in:
                         Intent myIntent6 = new Intent(getApplicationContext(), SignInActivity.class);
                         startActivity(myIntent6);
-
                         drawerLayout.closeDrawers();
                         break;
-
                     case R.id.sign_up:
                         Intent myIntent7 = new Intent(getApplicationContext(), SignUpActivity.class);
                         startActivity(myIntent7);
-
                         drawerLayout.closeDrawers();
                         break;
-
                     case R.id.help_feedback:
                         Intent myIntent8 = new Intent(getApplicationContext(), HelpFeedbackActivity.class);
                         startActivity(myIntent8);
-
                         drawerLayout.closeDrawers();
                         break;
                 }
                 return false;
             }
         });
-
-
     }//END onCreate
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-
         actionBarDrawerToggle.syncState();
     }
-
-
 }

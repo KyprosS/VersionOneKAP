@@ -23,96 +23,21 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center">
-
-
-
-                    <ImageView
-                        android:id="@+id/technicians_cat"
-                        android:layout_width="40dp"
-                        android:layout_height="160dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:background="@drawable/test_icon_1"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        />
-
-                    <ImageView
-                        android:id="@+id/emergencies_cat"
-                        android:layout_width="40dp"
-                        android:layout_height="160dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:layout_marginLeft="10dp"
-                        android:background="@drawable/test_icon_2"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:id="@+id/household_cat"
-                        android:layout_width="40dp"
-                        android:layout_height="160dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:background="@drawable/test_icon_3"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        />
-
-                    <ImageView
-                        android:id="@+id/others_cat"
-                        android:layout_width="40dp"
-                        android:layout_height="160dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:layout_marginLeft="10dp"
-                        android:background="@drawable/test_icon_4"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        />
-
-                </LinearLayout>
-
-
-
-            </LinearLayout>
-
-
-
-
-
-
-
-
+            <GridView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/grid_view"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:numColumns="2"
+                android:verticalSpacing="15dp"
+                android:horizontalSpacing="10dp"
+                android:paddingTop="20dp"
+                android:columnWidth="90dp"
+                android:stretchMode="columnWidth"
+                android:gravity="center" />
 
 
 
         </android.support.v4.widget.SwipeRefreshLayout>
-
 
 
         <!--Search Button icon-->

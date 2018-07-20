@@ -1,12 +1,13 @@
 package com.example.kypros.versiononekap;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.melnykov.fab.FloatingActionButton;
@@ -41,8 +42,6 @@ public class MainActivity extends BaseActivity {
 
 
 
-
-
         //DRAG DOWN TO REFRESH LAYOUT STARTS--------------------------------------------------------
         mySwipeRefreshLayout = (SwipeRefreshLayout)this.findViewById(R.id.swipeContainer);
 
@@ -58,60 +57,40 @@ public class MainActivity extends BaseActivity {
         //DRAG DOWN TO REFRESH LAYOUT ENDS----------------------------------------------------------
 
 
-        //BEGIN SET SESSION ID AND IMAGEVIEWS TO ANOTHER ACTIVITY-----------------------------------
-        imVtechnicians_cat = (ImageView) findViewById(R.id.technicians_cat);
-        imVtechnicians_cat.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
 
-                int sessionId = 1;
 
-                Intent myIntent = new Intent(getBaseContext(), ChildCategoriesDynamicActivity.class);
-                myIntent.putExtra("PARENT_ID", sessionId);
 
-                startActivity(myIntent);
+
+
+
+
+
+        //Grid View declaration
+        GridView gridView = (GridView) findViewById(R.id.grid_view);
+        gridView.setAdapter(new ImageAdapter(this));
+
+
+
+
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id)
+            {
+                Intent i = new Intent(getApplicationContext(), ChildCategoriesDynamicActivity.class);
+
+                i.putExtra("parentID", position);
+
+                startActivity(i);
             }
         });
 
-        imVemergencies_cat = (ImageView) findViewById(R.id.emergencies_cat);
-        imVemergencies_cat.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
 
-                int sessionId = 2;
 
-                Intent myIntent = new Intent(getBaseContext(), ChildCategoriesDynamicActivity.class);
-                myIntent.putExtra("PARENT_ID", sessionId);
 
-                startActivity(myIntent);
-            }
-        });
 
-        imVhousehold_cat = (ImageView) findViewById(R.id.household_cat);
-        imVhousehold_cat.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
 
-                int sessionId = 3;
 
-                Intent myIntent = new Intent(getBaseContext(), ChildCategoriesDynamicActivity.class);
-                myIntent.putExtra("PARENT_ID", sessionId);
-
-                startActivity(myIntent);
-            }
-        });
-
-        imVothers_cat = (ImageView) findViewById(R.id.others_cat);
-        imVothers_cat.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                int sessionId = 4;
-
-                Intent myIntent = new Intent(getBaseContext(), ChildCategoriesDynamicActivity.class);
-                myIntent.putExtra("PARENT_ID", sessionId);
-
-                startActivity(myIntent);
-            }
-        });
-
-        //END SET SESSION ID AND IMAGEVIEWS TO ANOTHER ACTIVITY-------------------------------------------
 
 
 
@@ -139,7 +118,7 @@ public class MainActivity extends BaseActivity {
 
 
 
-//DISABLE BACK BUTTON TO GO TO WELCOME SCREEN START-------------------------------------------------
+    //DISABLE BACK BUTTON TO GO TO WELCOME SCREEN START-------------------------------------------------
     @Override
     public void onBackPressed() {
 

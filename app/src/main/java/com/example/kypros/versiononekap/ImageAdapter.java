@@ -16,7 +16,6 @@ public class ImageAdapter extends BaseAdapter {
     public Integer[] mThumbIds = {
             R.drawable.test_icon_1, R.drawable.test_icon_2,
             R.drawable.test_icon_3, R.drawable.test_icon_4,
-
     };
 
     // Constructor
@@ -26,7 +25,6 @@ public class ImageAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-
 
         return mThumbIds.length;
     }
@@ -50,10 +48,7 @@ public class ImageAdapter extends BaseAdapter {
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imageView.setLayoutParams(new GridView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-
         return imageView;
     }
-
-
 
 }

@@ -4,4 +4,6 @@
     <string name="Close">Close</string>
     <string name="Login_logout">Sign In</string>
     <string name="help_feedback">Help &amp; Feedback</string>
+
+    <string name="hello">Hello</string>
 </resources>

@@ -1,12 +1,18 @@
 package com.example.kypros.versiononekap;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.os.Bundle;
-
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ListView;
+import android.widget.Toast;
+import java.util.ArrayList;
+
 
 public class ChildCategoriesDynamicActivity extends BaseActivity {
 
@@ -27,20 +33,17 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
 
 
         Intent mIntent = getIntent();
-        Integer parent_id = mIntent.getIntExtra("PARENT_ID", 0);
+        Integer parent_id = mIntent.getIntExtra("parentID", 0);
 
-        //Log.d("THIS!!!!!!!!!!!!!!!!!!!", "Value: " + parent_id);
-
-
+        Log.d("THIS!!!!!!!!!!!!!!!!!!!", "Value: " + parent_id);
 
 
 
-/*
 
-        //Grid View declaration
-        GridView gridView = (GridView) findViewById(R.id.grid_view);
-        gridView.setAdapter(new ImageAdapter(this));
-*/
+
+
+
+
 
 
 
@@ -57,7 +60,25 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
                 }
         );
         //DRAG DOWN TO REFRESH LAYOUT ENDS----------------------------------------------------------
-    }
+
+
+
+
+
+
+    }//onCreate Ends here
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
