@@ -45,8 +45,7 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".SignInActivity"
-            android:theme="@style/AppTheme"
-            />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".HelpFeedbackActivity"
             android:theme="@style/AppTheme" />
@@ -65,8 +64,11 @@
         <activity android:name=".BaseActivity" />
         <activity
             android:name=".ResetPasswordActivity"
-            android:theme="@style/AppTheme"
-            />
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".googleAuth"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

@@ -40,7 +40,7 @@ public class ProfileActivity extends AppCompatActivity {
                 if (user == null) {
                     // user auth state is changed - user is null
                     // launch login activity
-                    startActivity(new Intent(ProfileActivity.this, SignInActivity.class));
+                    startActivity(new Intent(ProfileActivity.this, MainActivity.class));
                     finish();
                 }
             }
@@ -236,6 +236,7 @@ public class ProfileActivity extends AppCompatActivity {
     //sign out method
     public void signOut() {
         auth.signOut();
+        Toast.makeText(ProfileActivity.this, "Sign out successful!", Toast.LENGTH_SHORT).show();
     }
 
     @Override

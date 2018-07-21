@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="10dp"
             android:text="Sign In"
             android:textColor="@color/white"
             android:textSize="20dp"
@@ -88,9 +88,23 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:text="@string/btn_login"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
+
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button_google"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="visible"
+            />
+
+
+
+
 
 
         <Button
@@ -98,7 +112,7 @@
             style="?android:textAppearanceSmall"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:background="@null"
             android:text="@string/btn_forget_password"
             android:textAllCaps="false"
@@ -110,7 +124,7 @@
             style="?android:textAppearanceSmall"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="0dp"
             android:background="@null"
             android:text="@string/btn_link_to_register"
             android:textAllCaps="false"
