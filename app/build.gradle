@@ -17,6 +17,12 @@ android {
         }
     }
 
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE-FIREBASE.txt'
+        exclude 'META-INF/NOTICE'
+    }
+
 }
 
 dependencies {
@@ -54,5 +60,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.0'
     implementation 'com.google.firebase:firebase-auth:16.0.2'
     implementation 'com.google.android.gms:play-services-auth:15.0.1'
+
+    implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
+
+
 }
 apply plugin: 'com.google.gms.google-services'

@@ -9,18 +9,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class BaseActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
 
+    private FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        //Display Navigation Drawer (Burger Menu)
+        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
@@ -83,6 +89,31 @@ public class BaseActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+
+        //HIDE Sign In, Sign Up, Favorites, My Services if user is not logged in
+        //Get Firebase auth instance
+        auth = FirebaseAuth.getInstance();
+
+        //If user is logged in
+        if(auth.getCurrentUser()!= null){
+            navigationView.getMenu().findItem(R.id.sign_in).setVisible(false);
+            navigationView.getMenu().findItem(R.id.sign_up).setVisible(false);
+
+            navigationView.getMenu().findItem(R.id.profile).setVisible(true);
+            navigationView.getMenu().findItem(R.id.my_services).setVisible(true);
+            navigationView.getMenu().findItem(R.id.favorites).setVisible(true);
+
+        }else{
+            navigationView.getMenu().findItem(R.id.sign_in).setVisible(true);
+            navigationView.getMenu().findItem(R.id.sign_up).setVisible(true);
+
+            navigationView.getMenu().findItem(R.id.profile).setVisible(false);
+            navigationView.getMenu().findItem(R.id.my_services).setVisible(false);
+            navigationView.getMenu().findItem(R.id.favorites).setVisible(false);
+        }
+
+
     }//END onCreate
 
     @Override

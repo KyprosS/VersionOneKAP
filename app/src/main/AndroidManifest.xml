@@ -3,6 +3,7 @@
     package="com.example.kypros.versiononekap">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -44,20 +45,28 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".SignInActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            />
         <activity
             android:name=".HelpFeedbackActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".SignUpActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ChildCategoriesDynamicActivity"
+        <activity
+            android:name=".ChildCategoriesDynamicActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ListServicesDynamicActivity"
+        <activity
+            android:name=".ListServicesDynamicActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".DisplayServiceDynamicActivity"
+        <activity
+            android:name=".DisplayServiceDynamicActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".BaseActivity"/>
+        <activity android:name=".BaseActivity" />
+        <activity
+            android:name=".ResetPasswordActivity"
+            android:theme="@style/AppTheme"
+            />
     </application>
 
 </manifest>

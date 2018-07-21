@@ -5,14 +5,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ListView;
-import android.widget.Toast;
-import java.util.ArrayList;
-
 
 public class ChildCategoriesDynamicActivity extends BaseActivity {
 
@@ -36,6 +29,32 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
         Integer parent_id = mIntent.getIntExtra("parentID", 0);
 
         Log.d("THIS!!!!!!!!!!!!!!!!!!!", "Value: " + parent_id);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

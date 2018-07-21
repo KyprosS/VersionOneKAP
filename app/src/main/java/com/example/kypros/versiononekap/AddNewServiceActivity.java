@@ -1,15 +1,17 @@
 package com.example.kypros.versiononekap;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class AddNewServiceActivity extends BaseActivity {
 
-    SwipeRefreshLayout mySwipeRefreshLayoutSearch;
+
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -22,7 +24,15 @@ public class AddNewServiceActivity extends BaseActivity {
         navigationView.getMenu().getItem(3).setChecked(true);
         //ADD BURGER MENU END ----------------------------------------------------------------------
 
+        auth = FirebaseAuth.getInstance();
+
+        //If user is not logged in
+        if (auth.getCurrentUser() == null) {
+            Intent myIntent = new Intent(getApplicationContext(), SignInActivity.class);
+            startActivity(myIntent);
+            finish();
+        }else{}
 
 
-    }
+    }//End OnCreate
 }
