@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -34,6 +35,7 @@ public class googleAuth extends AppCompatActivity implements GoogleApiClient.OnC
     private FirebaseAuth.AuthStateListener mAuthListener;
     private GoogleApiClient mGoogleApiClient;
     SignInButton signin;
+    private ProgressBar progressBar;
 
 
     @Override
@@ -42,6 +44,7 @@ public class googleAuth extends AppCompatActivity implements GoogleApiClient.OnC
         setContentView(R.layout.activity_google_auth);
 
         signin = (SignInButton) findViewById(R.id.sign_in_button);
+        progressBar= (ProgressBar)findViewById(R.id.progressBar);
 
 
 
@@ -72,7 +75,7 @@ public class googleAuth extends AppCompatActivity implements GoogleApiClient.OnC
     }
 
     public void signIn(){
-
+        progressBar.setVisibility(View.VISIBLE);
         Intent intent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(intent, RC_SIGN_IN);
     }
@@ -96,8 +99,11 @@ public class googleAuth extends AppCompatActivity implements GoogleApiClient.OnC
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
 
+
+
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         Toast.makeText(googleAuth.this,"Login successful! Please wait...", Toast.LENGTH_LONG).show();
+
 
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -108,6 +114,9 @@ public class googleAuth extends AppCompatActivity implements GoogleApiClient.OnC
                         String name = getdata();
 
                         if (task.isSuccessful()){
+
+                            progressBar.setVisibility(View.GONE);
+
 
                             Intent intent = new Intent(googleAuth.this, MainActivity.class);
                             startActivity(intent);

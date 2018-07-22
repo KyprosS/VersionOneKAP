@@ -103,10 +103,6 @@
             />
 
 
-
-
-
-
         <Button
             android:id="@+id/btn_reset_password"
             style="?android:textAppearanceSmall"
@@ -133,6 +129,5 @@
 
 
     </LinearLayout>
-
 
 </RelativeLayout>

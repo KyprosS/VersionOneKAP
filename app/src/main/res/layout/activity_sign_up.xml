@@ -14,6 +14,7 @@
         android:background="@color/colorPrimaryDark"
         android:orientation="vertical"
         android:padding="@dimen/activity_horizontal_margin">
+
         <!-- Login progress -->
         <ProgressBar
 

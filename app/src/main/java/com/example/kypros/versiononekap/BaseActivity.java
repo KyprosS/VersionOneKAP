@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -85,6 +86,15 @@ public class BaseActivity extends AppCompatActivity {
                         startActivity(myIntent8);
                         drawerLayout.closeDrawers();
                         break;
+                    case R.id.log_out:
+                        Intent myIntent9 = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(myIntent9);
+                        drawerLayout.closeDrawers();
+
+                        auth.signOut();
+
+                        Toast.makeText(BaseActivity.this, "Sign out successful!", Toast.LENGTH_LONG).show();
+                        break;
                 }
                 return false;
             }
@@ -100,6 +110,8 @@ public class BaseActivity extends AppCompatActivity {
             navigationView.getMenu().findItem(R.id.sign_in).setVisible(false);
             navigationView.getMenu().findItem(R.id.sign_up).setVisible(false);
 
+            navigationView.getMenu().findItem(R.id.log_out).setVisible(true);
+
             navigationView.getMenu().findItem(R.id.profile).setVisible(true);
             navigationView.getMenu().findItem(R.id.my_services).setVisible(true);
             navigationView.getMenu().findItem(R.id.favorites).setVisible(true);
@@ -108,6 +120,7 @@ public class BaseActivity extends AppCompatActivity {
             navigationView.getMenu().findItem(R.id.sign_in).setVisible(true);
             navigationView.getMenu().findItem(R.id.sign_up).setVisible(true);
 
+            navigationView.getMenu().findItem(R.id.log_out).setVisible(false);
             navigationView.getMenu().findItem(R.id.profile).setVisible(false);
             navigationView.getMenu().findItem(R.id.my_services).setVisible(false);
             navigationView.getMenu().findItem(R.id.favorites).setVisible(false);
@@ -116,9 +129,12 @@ public class BaseActivity extends AppCompatActivity {
 
     }//END onCreate
 
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         actionBarDrawerToggle.syncState();
     }
+
+
 }
