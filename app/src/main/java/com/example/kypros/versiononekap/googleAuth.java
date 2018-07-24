@@ -97,26 +97,27 @@ public class googleAuth extends AppCompatActivity implements GoogleApiClient.OnC
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
+        //Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
 
 
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        Toast.makeText(googleAuth.this,"Login successful! Please wait...", Toast.LENGTH_LONG).show();
+        Toast.makeText(googleAuth.this,"Login successful! Please wait...", Toast.LENGTH_SHORT).show();
 
 
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+
+        mAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
+                        //Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
                         String name = getdata();
 
                         if (task.isSuccessful()){
 
                             progressBar.setVisibility(View.GONE);
 
+                            Toast.makeText(googleAuth.this,"Welcome back!", Toast.LENGTH_SHORT).show();
 
                             Intent intent = new Intent(googleAuth.this, MainActivity.class);
                             startActivity(intent);

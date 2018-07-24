@@ -12,10 +12,6 @@
 
 
 
-
-
-
-
     <color name="bg_login">#26ae90</color>
     <color name="bg_reg">#2e3237</color>
     <color name="bg_main">#ffffff</color>
@@ -29,3 +25,8 @@
     <color name="lbl_name">#333333</color>
     <color name="btn_logut_bg">#ff6861</color>
 </resources>
+
+
+
+
+

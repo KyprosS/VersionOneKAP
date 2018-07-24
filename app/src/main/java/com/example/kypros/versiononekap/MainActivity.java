@@ -19,11 +19,6 @@ public class MainActivity extends BaseActivity {
     FloatingActionButton floatingSearchIcon;
     SwipeRefreshLayout mySwipeRefreshLayout;
 
-    ImageView imVtechnicians_cat;
-    ImageView imVemergencies_cat;
-    ImageView imVhousehold_cat;
-    ImageView imVothers_cat;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +31,6 @@ public class MainActivity extends BaseActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.getMenu().getItem(0).setChecked(true); //Highlight selected item in menu
         //ADD BURGER MENU END ----------------------------------------------------------------------
-
-
-
-
 
 
         //DRAG DOWN TO REFRESH LAYOUT STARTS--------------------------------------------------------
@@ -68,9 +59,6 @@ public class MainActivity extends BaseActivity {
         //Grid View declaration
         GridView gridView = (GridView) findViewById(R.id.grid_view);
         gridView.setAdapter(new ImageAdapter(this));
-
-
-
 
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener()

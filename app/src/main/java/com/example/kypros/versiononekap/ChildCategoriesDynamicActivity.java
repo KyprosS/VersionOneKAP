@@ -6,6 +6,14 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.FrameLayout;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 
 public class ChildCategoriesDynamicActivity extends BaseActivity {
 
@@ -15,6 +23,7 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         //ADD BURGER MENU DYNAMICALY START ---------------------------------------------------------
         FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
@@ -27,7 +36,6 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
 
         Intent mIntent = getIntent();
         Integer parent_id = mIntent.getIntExtra("parentID", 0);
-
         Log.d("THIS!!!!!!!!!!!!!!!!!!!", "Value: " + parent_id);
 
 
@@ -56,15 +64,7 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
 
 
 
-
-
-
-
-
-
-
-
-
+/*
 
         //DRAG DOWN TO REFRESH LAYOUT STARTS--------------------------------------------------------
         mySwipeRefreshLayoutSearch = (SwipeRefreshLayout) this.findViewById(R.id.swipeContainer);
@@ -80,20 +80,12 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
         );
         //DRAG DOWN TO REFRESH LAYOUT ENDS----------------------------------------------------------
 
-
+*/
 
 
 
 
     }//onCreate Ends here
-
-
-
-
-
-
-
-
 
 
 

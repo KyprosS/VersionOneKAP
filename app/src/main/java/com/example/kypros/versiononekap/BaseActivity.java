@@ -93,7 +93,7 @@ public class BaseActivity extends AppCompatActivity {
 
                         auth.signOut();
 
-                        Toast.makeText(BaseActivity.this, "Sign out successful!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(BaseActivity.this, "See you soon!", Toast.LENGTH_SHORT).show();
                         break;
                 }
                 return false;

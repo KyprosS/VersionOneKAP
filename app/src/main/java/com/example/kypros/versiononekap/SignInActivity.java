@@ -111,7 +111,7 @@ public class SignInActivity extends BaseActivity {
                             }
                         }else {
                             //Sign in welcome message
-                            Toast.makeText(SignInActivity.this,"Login successful!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(SignInActivity.this,"Welcome back!", Toast.LENGTH_SHORT).show();
 
                             Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                             startActivity(intent);
