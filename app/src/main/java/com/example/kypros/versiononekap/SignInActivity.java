@@ -32,7 +32,7 @@ public class SignInActivity extends BaseActivity {
         getLayoutInflater().inflate(R.layout.activity_sign_in, contentFrameLayout);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.getMenu().getItem(0).setChecked(true); //Highlight selected item in menu
+        navigationView.getMenu().getItem(7).setChecked(true); //Highlight selected item in menu
         //ADD BURGER MENU END ----------------------------------------------------------------------
 
         //Get Firebase auth instance
@@ -75,6 +75,7 @@ public class SignInActivity extends BaseActivity {
         btn_google.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 startActivity(new Intent(SignInActivity.this, googleAuth.class));
             }
         });
@@ -88,11 +89,11 @@ public class SignInActivity extends BaseActivity {
                 final String password = inputPassword.getText().toString();
 
                 if (TextUtils.isEmpty(email)){
-                    Toast.makeText(getApplicationContext(),"Enter email address !", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Please enter your email address!", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (TextUtils.isEmpty(password)){
-                    Toast.makeText(getApplicationContext(),"Enter password ! ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Please enter your password!", Toast.LENGTH_LONG).show();
                     return;
                 }
                 progressBar.setVisibility(View.VISIBLE);
@@ -107,6 +108,7 @@ public class SignInActivity extends BaseActivity {
                             if(password.length()<6){
                                 inputPassword.setError(getString(R.string.minimum_pass));
                             }else {
+
                                 Toast.makeText(SignInActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
                             }
                         }else {

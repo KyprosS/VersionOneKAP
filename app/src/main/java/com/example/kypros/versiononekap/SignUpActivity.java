@@ -34,7 +34,7 @@ public class SignUpActivity extends BaseActivity {
         getLayoutInflater().inflate(R.layout.activity_sign_up, contentFrameLayout);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.getMenu().getItem(0).setChecked(true); //Highlight selected item in menu
+        navigationView.getMenu().getItem(8).setChecked(true); //Highlight selected item in menu
         //ADD BURGER MENU END ----------------------------------------------------------------------
 
 

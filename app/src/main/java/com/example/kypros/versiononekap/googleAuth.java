@@ -5,7 +5,6 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -16,8 +15,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -70,7 +67,6 @@ public class googleAuth extends AppCompatActivity implements GoogleApiClient.OnC
         if (i == R.id.sign_in_button){
 
             signIn();
-
         }
     }
 
@@ -107,27 +103,27 @@ public class googleAuth extends AppCompatActivity implements GoogleApiClient.OnC
 
 
         mAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        //Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
-                        String name = getdata();
+                //Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
+                String name = getdata();
 
-                        if (task.isSuccessful()){
+                if (task.isSuccessful()){
 
-                            progressBar.setVisibility(View.GONE);
+                    progressBar.setVisibility(View.GONE);
 
-                            Toast.makeText(googleAuth.this,"Welcome back!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(googleAuth.this,"Welcome back!", Toast.LENGTH_SHORT).show();
 
-                            Intent intent = new Intent(googleAuth.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
+                    Intent intent = new Intent(googleAuth.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
 
-                        }else {
-                            Toast.makeText(googleAuth.this,"Something went wrong",Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
+                }else {
+                    Toast.makeText(googleAuth.this,"Something went wrong",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
 

@@ -3,8 +3,8 @@ package com.example.kypros.versiononekap;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -20,15 +19,14 @@ import com.squareup.picasso.Picasso;
 
 public class ChildCategoriesDynamicActivity extends BaseActivity {
 
+    SwipeRefreshLayout mySwipeRefreshLayout;
     private RecyclerView mBlogList;
     private DatabaseReference mDatabase;
-
 
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         //ADD BURGER MENU DYNAMICALY START ---------------------------------------------------------
         FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
@@ -37,24 +35,35 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
         navigationView.getMenu().getItem(0).setChecked(true);
         //ADD BURGER MENU END ----------------------------------------------------------------------
 
+        //DRAG DOWN TO REFRESH LAYOUT STARTS--------------------------------------------------------
+        mySwipeRefreshLayout = (SwipeRefreshLayout)this.findViewById(R.id.swipeContainer);
+
+        mySwipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        finish();
+                        startActivity(getIntent());
+                    }
+                }
+        );
+        //DRAG DOWN TO REFRESH LAYOUT ENDS----------------------------------------------------------
+
 
         Intent mIntent = getIntent();
         Integer parent_id = mIntent.getIntExtra("parentID", 0);
         Log.d("THIS!!!!!!!!!!!!!!!!!!!", "Value: " + parent_id);
 
 
+
+
+        //Init Firebase
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Child_categories");
         mDatabase.keepSynced(true);
-
 
         mBlogList = (RecyclerView) findViewById(R.id.myrecyclerview);
         mBlogList.setHasFixedSize(true);
         mBlogList.setLayoutManager(new LinearLayoutManager(this));
-
-
-
-
-
 
 
 
@@ -69,7 +78,7 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
         super.onStart();
 
         FirebaseRecyclerAdapter<Cld_cats, CldCatsViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Cld_cats, CldCatsViewHolder>
-                (Cld_cats.class, R.layout.blog_row, CldCatsViewHolder.class, mDatabase) {
+                (Cld_cats.class, R.layout.child_cat_row, CldCatsViewHolder.class, mDatabase) {
 
             @Override
             protected void populateViewHolder(CldCatsViewHolder viewHolder, Cld_cats model, int position) {
@@ -82,14 +91,22 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
 
 
 
+
+                //HERE MAGIC HAPPENS
             }
         };
-
-
         mBlogList.setAdapter(firebaseRecyclerAdapter);
 
-
     }
+
+
+
+
+
+
+
+
+
 
     public static class CldCatsViewHolder extends RecyclerView.ViewHolder{
 
@@ -99,6 +116,30 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
         {
             super(itemView);
             mView = itemView;
+
+
+
+
+            //On click on the card views change activity
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    view.getContext().startActivity(new Intent(view.getContext(), ListServicesDynamicActivity.class));
+                }
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
 
         public void setTitle(String title){
@@ -115,6 +156,7 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
             ImageView post_Image = (ImageView) mView.findViewById(R.id.post_image);
 
 
+            //If image column is empty
             if (image.isEmpty()) {
                 post_Image.setImageResource(R.drawable.ic_add_white_24dp);
             } else{
@@ -122,21 +164,9 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
             }
 
 
-
-
-
         }
 
-
-
-
-
-
     }
-
-
-
-
 
 
 

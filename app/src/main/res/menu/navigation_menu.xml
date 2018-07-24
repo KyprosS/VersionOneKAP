@@ -39,23 +39,23 @@
 
     </group>
 
-    <item android:id="@+id/sign_in"
-        android:icon="@drawable/ic_exit_to_app_black_24dp"
-        android:visible="true"
-        android:title="@string/Login_logout"/>
+    <group android:id="@+id/account_logs">
 
-    <item android:id="@+id/sign_up"
-        android:icon="@drawable/ic_person_add_black_24dp"
-        android:visible="true"
-        android:title="Sign Up"/>
+        <item android:id="@+id/sign_in"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:visible="true"
+            android:title="@string/Login_logout"/>
 
-    <group android:id="@+id/logout_grp" >
+        <item android:id="@+id/sign_up"
+            android:icon="@drawable/ic_person_add_black_24dp"
+            android:visible="true"
+            android:title="Sign Up"/>
+
         <item android:id="@+id/log_out"
             android:icon="@drawable/ic_power_settings_new_black_24dp"
             android:visible="true"
             android:title="Sign Out"/>
 
     </group>
-
 
 </menu>

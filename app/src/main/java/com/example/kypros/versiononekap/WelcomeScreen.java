@@ -41,11 +41,11 @@ public class WelcomeScreen extends AppCompatActivity {
         Thread timerThread = new Thread(){
             public void run(){
                 try{
-                    sleep(200);
+                    sleep(2000);
                 }catch(InterruptedException e){
                     e.printStackTrace();
                 }finally{
-                    Intent intent = new Intent(WelcomeScreen.this,MainActivity.class);
+                    Intent intent = new Intent(WelcomeScreen.this, MainActivity.class);
                     startActivity(intent);
                 }
             }

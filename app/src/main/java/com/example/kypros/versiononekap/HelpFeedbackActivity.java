@@ -18,7 +18,7 @@ public class HelpFeedbackActivity extends BaseActivity {
         FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_help_feedback, contentFrameLayout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.getMenu().getItem(8).setChecked(true);
+        navigationView.getMenu().getItem(6).setChecked(true);
         //ADD BURGER MENU END ----------------------------------------------------------------------
 
 
