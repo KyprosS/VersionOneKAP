@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".ChildCategoriesDynamicActivity">
 
-    <FrameLayout
+
+
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/content"
-        tools:ignore="UselessParent">
-
-
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/swipeContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_height="match_parent"
+        android:id="@+id/myrecyclerview" >
 
 
 
-        </android.support.v4.widget.SwipeRefreshLayout>
 
 
-    </FrameLayout>
-</LinearLayout>
+
+    </android.support.v7.widget.RecyclerView>
+
+
+
+
+
+
+
+
+
+
+
+
+</RelativeLayout>
