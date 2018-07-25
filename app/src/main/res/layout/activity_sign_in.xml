@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login"
@@ -8,21 +7,20 @@
     tools:context=".SignInActivity">
 
     <LinearLayout
+        android:id="@+id/linear_layout_signIn"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@color/colorPrimaryDark"
         android:orientation="vertical"
         android:padding="@dimen/activity_horizontal_margin">
 
         <!-- Login progress -->
         <ProgressBar
             android:id="@+id/progressBar"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_gravity="center|bottom"
             android:layout_marginBottom="20dp"
             android:visibility="gone" />
-
 
         <ImageView
             android:layout_width="@dimen/logo_w_h"
@@ -43,7 +41,9 @@
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white">
 
             <EditText
                 android:id="@+id/email"
@@ -55,15 +55,15 @@
                 android:imeOptions="actionUnspecified"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
-                android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white"
                 android:singleLine="true" />
 
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white">
 
             <EditText
                 android:id="@+id/password"
@@ -75,8 +75,6 @@
                 android:imeOptions="actionUnspecified"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white"
                 android:singleLine="true" />
 
         </android.support.design.widget.TextInputLayout>
@@ -96,11 +94,8 @@
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/sign_in_button_google"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="visible"
-            />
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
 
 
         <Button
@@ -126,7 +121,6 @@
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
-
 
     </LinearLayout>
 

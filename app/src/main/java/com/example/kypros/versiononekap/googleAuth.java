@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -25,7 +26,6 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class googleAuth extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener,View.OnClickListener{
 
-
     private static final String TAG = "GoogleActivity";
     private static final int RC_SIGN_IN = 9001;
     private FirebaseAuth mAuth;
@@ -34,18 +34,21 @@ public class googleAuth extends AppCompatActivity implements GoogleApiClient.OnC
     SignInButton signin;
     private ProgressBar progressBar;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_google_auth);
 
         signin = (SignInButton) findViewById(R.id.sign_in_button);
-        progressBar= (ProgressBar)findViewById(R.id.progressBar);
+        //Change Google button text
+        setGooglePlusButtonText(signin, "Connect");
 
-
+        progressBar = (ProgressBar)findViewById(R.id.progressBar);
 
         findViewById(R.id.sign_in_button).setOnClickListener(googleAuth.this);
+
+
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -93,14 +96,9 @@ public class googleAuth extends AppCompatActivity implements GoogleApiClient.OnC
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        //Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
-
-
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        Toast.makeText(googleAuth.this,"Login successful! Please wait...", Toast.LENGTH_SHORT).show();
-
-
+        Toast.makeText(googleAuth.this,"Google connection successful!", Toast.LENGTH_SHORT).show();
 
         mAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
@@ -120,6 +118,8 @@ public class googleAuth extends AppCompatActivity implements GoogleApiClient.OnC
                     finish();
 
                 }else {
+
+
                     Toast.makeText(googleAuth.this,"Something went wrong",Toast.LENGTH_LONG).show();
                 }
             }
@@ -131,7 +131,6 @@ public class googleAuth extends AppCompatActivity implements GoogleApiClient.OnC
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
-
 
     public String getdata(){
         String name = null;
@@ -150,6 +149,18 @@ public class googleAuth extends AppCompatActivity implements GoogleApiClient.OnC
         }
 
         return name;
+    }
 
+    protected void setGooglePlusButtonText(SignInButton signInButton, String buttonText) {
+        // Find the TextView that is inside of the SignInButton and set its text
+        for (int i = 0; i < signInButton.getChildCount(); i++) {
+            View v = signInButton.getChildAt(i);
+
+            if (v instanceof TextView) {
+                TextView tv = (TextView) v;
+                tv.setText(buttonText);
+                return;
+            }
+        }
     }
 }

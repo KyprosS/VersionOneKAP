@@ -26,7 +26,6 @@
             android:layout_marginBottom="20dp"
             android:visibility="gone" />
 
-
         <ImageView
             android:layout_width="@dimen/logo_w_h"
             android:layout_height="@dimen/logo_w_h"
@@ -34,14 +33,12 @@
             android:layout_marginBottom="30dp"
             android:src="@drawable/google_logo"/>
 
-
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
-            android:text="Login with Google"
+            android:text="Connect using Google"
             android:textColor="@color/white"
             android:textSize="20dp"
             />
@@ -55,7 +52,6 @@
             android:visibility="visible"
             />
 
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,6 +64,5 @@
 
 
     </LinearLayout>
-
 
 </RelativeLayout>

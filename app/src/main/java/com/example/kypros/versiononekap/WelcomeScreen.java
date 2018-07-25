@@ -41,7 +41,7 @@ public class WelcomeScreen extends AppCompatActivity {
         Thread timerThread = new Thread(){
             public void run(){
                 try{
-                    sleep(2000);
+                    sleep(200);
                 }catch(InterruptedException e){
                     e.printStackTrace();
                 }finally{
