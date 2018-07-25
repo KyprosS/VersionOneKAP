@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 public class FavoritesActivity extends BaseActivity {
 
     SwipeRefreshLayout mySwipeRefreshLayoutSearch;
@@ -36,5 +38,8 @@ public class FavoritesActivity extends BaseActivity {
                 }
         );
         //DRAG DOWN TO REFRESH LAYOUT ENDS----------------------------------------------------------
+
+
+
     }
 }

@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.example.kypros.versiononekap.Common.Common;
 import com.google.android.gms.common.SignInButton;
@@ -28,6 +29,7 @@ public class SignInActivity extends BaseActivity {
     private EditText inputEmail, inputPassword;
     private FirebaseAuth auth;
     private ProgressBar progressBar;
+    private TextView mUserTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,7 @@ public class SignInActivity extends BaseActivity {
         }
         //setContentView(R.layout.activity_sign_in);
 
+        mUserTextView = (TextView) navigationView.getHeaderView(0).findViewById(R.id.userName);
 
         inputEmail= (EditText)findViewById(R.id.email);
         inputPassword= (EditText)findViewById(R.id.password);
@@ -89,9 +92,6 @@ public class SignInActivity extends BaseActivity {
                     Toast.makeText(SignInActivity.this, "Please check your Internet connection!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-
-
             }
         });
 
@@ -100,7 +100,7 @@ public class SignInActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-                String email = inputEmail.getText().toString();
+                final String email = inputEmail.getText().toString();
                 final String password = inputPassword.getText().toString();
 
                 //Hide keyboard after click----------------------------------------------------------------
@@ -146,7 +146,9 @@ public class SignInActivity extends BaseActivity {
                                 }
                             }else {
                                 //Sign in welcome message
-                                Toast.makeText(SignInActivity.this,"Welcome back!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignInActivity.this,"Welcome back " + email + "!", Toast.LENGTH_SHORT).show();
+
+                                mUserTextView.setText("Greetings!");
 
                                 Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                                 startActivity(intent);
@@ -163,10 +165,6 @@ public class SignInActivity extends BaseActivity {
                 }
             }
         });
-
-
-
-
 
 
     }//End OnCreates

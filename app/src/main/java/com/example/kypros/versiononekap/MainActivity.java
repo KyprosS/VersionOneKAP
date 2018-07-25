@@ -18,7 +18,6 @@ public class MainActivity extends BaseActivity {
     FloatingActionButton floatingSearchIcon;
     SwipeRefreshLayout mySwipeRefreshLayout;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,28 +30,20 @@ public class MainActivity extends BaseActivity {
         navigationView.getMenu().getItem(0).setChecked(true); //Highlight selected item in menu
         //ADD BURGER MENU END ----------------------------------------------------------------------
 
-
         //DRAG DOWN TO REFRESH LAYOUT STARTS--------------------------------------------------------
         mySwipeRefreshLayout = (SwipeRefreshLayout)this.findViewById(R.id.swipeContainer);
 
-        mySwipeRefreshLayout.setOnRefreshListener(
-                new SwipeRefreshLayout.OnRefreshListener() {
-                    @Override
-                    public void onRefresh() {
-                        finish();
-                        startActivity(getIntent());
+
+            mySwipeRefreshLayout.setOnRefreshListener(
+                    new SwipeRefreshLayout.OnRefreshListener() {
+                        @Override
+                        public void onRefresh() {
+                            finish();
+                            startActivity(getIntent());
+                        }
                     }
-                }
-        );
+            );
         //DRAG DOWN TO REFRESH LAYOUT ENDS----------------------------------------------------------
-
-
-
-
-
-
-
-
 
 
         //Grid View declaration
@@ -74,15 +65,6 @@ public class MainActivity extends BaseActivity {
 
 
 
-
-
-
-
-
-
-
-
-
         //OnClick Search button jump to activity SearchResults START ------------------------------
         floatingSearchIcon = (FloatingActionButton) findViewById(R.id.floatingSearchIcon);
 
@@ -98,11 +80,7 @@ public class MainActivity extends BaseActivity {
 
 
 
-
-
     }//onCreate ENDS HERE
-
-
 
 
     //DISABLE BACK BUTTON TO GO TO WELCOME SCREEN START-------------------------------------------------
@@ -126,7 +104,5 @@ public class MainActivity extends BaseActivity {
         }, 2000);
     }
 //DISABLE BACK BUTTON TO GO TO WELCOME SCREEN END---------------------------------------------------
-
-
 
 }//END MAIN CLASS HERE

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,9 +13,13 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.kypros.versiononekap.Common.Common;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.melnykov.fab.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
 public class ChildCategoriesDynamicActivity extends BaseActivity {
@@ -22,7 +27,9 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
     SwipeRefreshLayout mySwipeRefreshLayout;
     private RecyclerView mBlogList;
     private DatabaseReference mDatabase;
+    FloatingActionButton floatingSearchIcon;
 
+    private static FirebaseDatabase firebaseDatabase;
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
@@ -38,16 +45,22 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
         //DRAG DOWN TO REFRESH LAYOUT STARTS--------------------------------------------------------
         mySwipeRefreshLayout = (SwipeRefreshLayout)this.findViewById(R.id.swipeContainer);
 
-        mySwipeRefreshLayout.setOnRefreshListener(
-                new SwipeRefreshLayout.OnRefreshListener() {
-                    @Override
-                    public void onRefresh() {
-                        finish();
-                        startActivity(getIntent());
+        //Check internet Connectivity
+            mySwipeRefreshLayout.setOnRefreshListener(
+                    new SwipeRefreshLayout.OnRefreshListener() {
+                        @Override
+                        public void onRefresh() {
+                            finish();
+                            startActivity(getIntent());
+                        }
                     }
-                }
-        );
+            );
         //DRAG DOWN TO REFRESH LAYOUT ENDS----------------------------------------------------------
+
+        if (firebaseDatabase == null) {
+            firebaseDatabase = FirebaseDatabase.getInstance();
+            firebaseDatabase.setPersistenceEnabled(true);
+        }
 
 
         Intent mIntent = getIntent();
@@ -63,10 +76,37 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
 
         mBlogList = (RecyclerView) findViewById(R.id.myrecyclerview);
         mBlogList.setHasFixedSize(true);
-        mBlogList.setLayoutManager(new LinearLayoutManager(this));
+
+
+        //mBlogList.setLayoutManager(new LinearLayoutManager(this));
 
 
 
+        mBlogList.setLayoutManager(new GridLayoutManager(this, 2));
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //OnClick Search button jump to activity SearchResults START ------------------------------
+        floatingSearchIcon = (FloatingActionButton) findViewById(R.id.floatingSearchIcon);
+
+        floatingSearchIcon.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+
+                Intent myIntent = new Intent(ChildCategoriesDynamicActivity.this, SearchResults.class);
+                startActivity(myIntent);
+            }
+        });
+        //On Search button click jump to activity SearchResults END --------------------------------
 
     }//onCreate Ends here
 

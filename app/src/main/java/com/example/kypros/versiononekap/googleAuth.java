@@ -48,7 +48,6 @@ public class googleAuth extends AppCompatActivity implements GoogleApiClient.OnC
         findViewById(R.id.sign_in_button).setOnClickListener(googleAuth.this);
 
 
-
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -111,14 +110,15 @@ public class googleAuth extends AppCompatActivity implements GoogleApiClient.OnC
 
                     progressBar.setVisibility(View.GONE);
 
-                    Toast.makeText(googleAuth.this,"Welcome back!", Toast.LENGTH_SHORT).show();
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                    Toast.makeText(googleAuth.this,"Welcome back " + user.getDisplayName() + "!", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(googleAuth.this, MainActivity.class);
                     startActivity(intent);
                     finish();
 
                 }else {
-
 
                     Toast.makeText(googleAuth.this,"Something went wrong",Toast.LENGTH_LONG).show();
                 }

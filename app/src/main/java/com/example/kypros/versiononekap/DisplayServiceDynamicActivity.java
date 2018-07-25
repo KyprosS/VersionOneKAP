@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 public class DisplayServiceDynamicActivity extends BaseActivity {
 
     SwipeRefreshLayout mySwipeRefreshLayoutSearch;
@@ -36,5 +38,7 @@ public class DisplayServiceDynamicActivity extends BaseActivity {
                 }
         );
         //DRAG DOWN TO REFRESH LAYOUT ENDS----------------------------------------------------------
+
+
     }
 }
