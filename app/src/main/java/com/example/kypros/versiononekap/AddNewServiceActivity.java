@@ -1,11 +1,10 @@
 package com.example.kypros.versiononekap;
 
 import android.content.Intent;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.os.Bundle;
 import android.widget.FrameLayout;
-
+import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class AddNewServiceActivity extends BaseActivity {
@@ -14,7 +13,7 @@ public class AddNewServiceActivity extends BaseActivity {
     private FirebaseAuth auth;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //ADD BURGER MENU DYNAMICALY START ---------------------------------------------------------
@@ -28,11 +27,13 @@ public class AddNewServiceActivity extends BaseActivity {
 
         //If user is not logged in
         if (auth.getCurrentUser() == null) {
+
+            Toast.makeText(AddNewServiceActivity.this, "You need an account to add a new service!", Toast.LENGTH_LONG).show();
+
             Intent myIntent = new Intent(getApplicationContext(), SignInActivity.class);
             startActivity(myIntent);
             finish();
-        }else{}
-
+        }
 
     }//End OnCreate
 }

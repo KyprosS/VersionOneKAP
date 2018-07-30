@@ -10,16 +10,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.auth.UserInfo;
 import com.squareup.picasso.Picasso;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class BaseActivity extends AppCompatActivity {
@@ -28,9 +24,6 @@ public class BaseActivity extends AppCompatActivity {
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
     private final Context mContext = this;
-
-    private TextView mUserTextView, mEmailTextView;
-    private CircleImageView mProfileImageView;
 
     private FirebaseAuth auth;
 
@@ -41,7 +34,6 @@ public class BaseActivity extends AppCompatActivity {
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
-
 
         //Display Navigation Drawer (Burger Menu)
         final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -58,7 +50,6 @@ public class BaseActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem item) {
 
                 switch (item.getItemId()) {
-
                     case R.id.main_categories:
                         Intent myIntent0 = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(myIntent0);
@@ -111,8 +102,6 @@ public class BaseActivity extends AppCompatActivity {
                         Intent myIntent9 = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(myIntent9);
                         drawerLayout.closeDrawers();
-
-
                         Toast.makeText(BaseActivity.this, "See you soon!", Toast.LENGTH_SHORT).show();
                         break;
                 }
@@ -121,23 +110,10 @@ public class BaseActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         //Navigation Drawer Account picture email and name-----------------------------------------------------------------
-        mUserTextView = (TextView) navigationView.getHeaderView(0).findViewById(R.id.userName);
-        mEmailTextView = (TextView) navigationView.getHeaderView(0).findViewById(R.id.email);
-        mProfileImageView = (CircleImageView) navigationView.getHeaderView(0).findViewById(R.id.profileImage);
+        TextView mUserTextView = (TextView) navigationView.getHeaderView(0).findViewById(R.id.userName);
+        TextView mEmailTextView = (TextView) navigationView.getHeaderView(0).findViewById(R.id.email);
+        CircleImageView mProfileImageView = (CircleImageView) navigationView.getHeaderView(0).findViewById(R.id.profileImage);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         //HIDE Sign In, Sign Up, Favorites, My Services if user is not logged in
@@ -147,16 +123,32 @@ public class BaseActivity extends AppCompatActivity {
         //If user is logged in
         if(auth.getCurrentUser()!= null){
 
-            mUserTextView.setText(user.getDisplayName());
-            mEmailTextView.setText(user.getEmail());
-            Uri uri = user.getPhotoUrl();
-            Picasso.with(mContext)
-                    .load(uri)
-                    .placeholder(android.R.drawable.sym_def_app_icon)
-                    .error(android.R.drawable.sym_def_app_icon)
-                    .into(mProfileImageView);
 
+            for (UserInfo user2: FirebaseAuth.getInstance().getCurrentUser().getProviderData()) {
 
+                //CHECK to WHICH PROVIDER IS LOGGED IN
+                //Google Login
+                if (user2.getProviderId().equals("google.com")) {
+
+                    mUserTextView.setText("Welcome,");
+                    //mEmailTextView.setText(user.getEmail());
+                    mEmailTextView.setText(user.getDisplayName());
+                    Uri uri = user.getPhotoUrl();
+                    Picasso.with(mContext)
+                            .load(uri)
+                            .placeholder(android.R.drawable.sym_def_app_icon)
+                            .error(android.R.drawable.sym_def_app_icon)
+                            .into(mProfileImageView);
+
+                    //EMAIL/Password Login
+                }else{
+
+                    mUserTextView.setText("Welcome,");
+                    mEmailTextView.setText(user.getEmail());
+                    mProfileImageView.setImageDrawable(getResources().getDrawable(R.drawable.firebase));
+
+                }
+            }
 
             navigationView.getMenu().findItem(R.id.log_out).setVisible(true);
             navigationView.getMenu().findItem(R.id.profile).setVisible(true);
@@ -166,10 +158,9 @@ public class BaseActivity extends AppCompatActivity {
             navigationView.getMenu().findItem(R.id.sign_in).setVisible(false);
             navigationView.getMenu().findItem(R.id.sign_up).setVisible(false);
         }else{
-            mUserTextView.setText("Greetings!");
-            mEmailTextView.setText("Feel free to explore our app");
+            mUserTextView.setText("Greetings,");
+            mEmailTextView.setText("Feel free to explore our app!");
             mProfileImageView.setImageDrawable(getResources().getDrawable(R.drawable.firebase));
-
 
             navigationView.getMenu().findItem(R.id.sign_in).setVisible(true);
             navigationView.getMenu().findItem(R.id.sign_up).setVisible(true);
@@ -180,16 +171,12 @@ public class BaseActivity extends AppCompatActivity {
             navigationView.getMenu().findItem(R.id.favorites).setVisible(false);
         }
 
-
     }//END onCreate
-
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         actionBarDrawerToggle.syncState();
     }
-
-
 
 }

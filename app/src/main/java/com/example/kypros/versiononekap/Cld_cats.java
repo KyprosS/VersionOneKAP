@@ -3,12 +3,16 @@ package com.example.kypros.versiononekap;
 public class Cld_cats {
 
     private String child_category_name;
-    private String id_parent_category;
+    private String parent_category;
     private String image;
 
-    public Cld_cats(String child_category_name, String id_parent_category, String image) {
+    public Cld_cats(){
+
+    }
+
+    public Cld_cats(String child_category_name, String parent_category, String image) {
         this.child_category_name = child_category_name;
-        this.id_parent_category = id_parent_category;
+        this.parent_category = parent_category;
         this.image = image;
     }
 
@@ -20,12 +24,12 @@ public class Cld_cats {
         this.child_category_name = child_category_name;
     }
 
-    public String getId_parent_category() {
-        return id_parent_category;
+    public String getParent_category() {
+        return parent_category;
     }
 
-    public void setId_parent_category(String id_parent_category) {
-        this.id_parent_category = id_parent_category;
+    public void setParent_category(String parent_category) {
+        this.parent_category = parent_category;
     }
 
     public String getImage() {
@@ -34,11 +38,6 @@ public class Cld_cats {
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-
-    public Cld_cats(){
-
     }
 
 }

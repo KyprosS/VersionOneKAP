@@ -23,6 +23,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.auth.UserInfo;
 
 public class googleAuth extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener,View.OnClickListener{
 
@@ -110,6 +111,7 @@ public class googleAuth extends AppCompatActivity implements GoogleApiClient.OnC
 
                     progressBar.setVisibility(View.GONE);
 
+                    //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                     Toast.makeText(googleAuth.this,"Welcome back " + user.getDisplayName() + "!", Toast.LENGTH_SHORT).show();

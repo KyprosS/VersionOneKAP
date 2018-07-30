@@ -57,6 +57,8 @@
                 android:imeOptions="actionUnspecified"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
                 android:singleLine="true" />
 
         </android.support.design.widget.TextInputLayout>
@@ -77,6 +79,8 @@
                 android:imeOptions="actionUnspecified"
                 android:inputType="textPassword"
                 android:maxLines="1"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
                 android:singleLine="true" />
 
         </android.support.design.widget.TextInputLayout>

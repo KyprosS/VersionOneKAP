@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -16,14 +15,12 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.kypros.versiononekap.Common.Common;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -62,7 +59,6 @@ public class SignUpActivity extends BaseActivity {
         btnResetPassword = (Button) findViewById(R.id.btn_reset_password);
 
 
-
         //Forget Password Button URL
         btnResetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,12 +91,8 @@ public class SignUpActivity extends BaseActivity {
                     Toast.makeText(SignUpActivity.this, "Please check your Internet connection!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-
-
             }
         });
-
 
 
         //Sign Up button
@@ -136,7 +128,6 @@ public class SignUpActivity extends BaseActivity {
                     Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
 
 
                 //Check internet Connectivity
@@ -216,6 +207,5 @@ public class SignUpActivity extends BaseActivity {
             }
         }
     }
-
 
 }

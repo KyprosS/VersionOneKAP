@@ -2,34 +2,37 @@ package com.example.kypros.versiononekap;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.kypros.versiononekap.Common.Common;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.melnykov.fab.FloatingActionButton;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class ChildCategoriesDynamicActivity extends BaseActivity {
 
     SwipeRefreshLayout mySwipeRefreshLayout;
     private RecyclerView mBlogList;
-    private DatabaseReference mDatabase;
+    private DatabaseReference databaseReference;
+    private DatabaseReference databaseReference2;
     FloatingActionButton floatingSearchIcon;
 
-    private static FirebaseDatabase firebaseDatabase;
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
@@ -57,32 +60,60 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
             );
         //DRAG DOWN TO REFRESH LAYOUT ENDS----------------------------------------------------------
 
-        if (firebaseDatabase == null) {
-            firebaseDatabase = FirebaseDatabase.getInstance();
-            firebaseDatabase.setPersistenceEnabled(true);
-        }
+
 
 
         Intent mIntent = getIntent();
-        Integer parent_id = mIntent.getIntExtra("parentID", 0);
-        Log.d("THIS!!!!!!!!!!!!!!!!!!!", "Value: " + parent_id);
+        String parent_id = mIntent.getStringExtra("Parent_category_Id");
+
+        //Log.d("THIS!!!!!!!!!!!!!!!!!!!", "Value: " + databaseReference2);
+
+
+        databaseReference2 = FirebaseDatabase.getInstance().getReference().child("Parent_categories").child(parent_id).child("parent_category_name");
+
+
+
+
+
+
+
+
+        //Log.d("THIS!!!!!!!!!!!!!!!!!!!", "Value: " + mQueryRef);
+
+
+
+
 
 
 
 
         //Init Firebase
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Child_categories");
-        mDatabase.keepSynced(true);
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Child_categories");
+        databaseReference.keepSynced(true);
 
         mBlogList = (RecyclerView) findViewById(R.id.myrecyclerview);
         mBlogList.setHasFixedSize(true);
-
-
         //mBlogList.setLayoutManager(new LinearLayoutManager(this));
-
-
-
         mBlogList.setLayoutManager(new GridLayoutManager(this, 2));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -112,19 +143,18 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
 
 
 
-
     @Override
     protected void onStart(){
         super.onStart();
 
         FirebaseRecyclerAdapter<Cld_cats, CldCatsViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Cld_cats, CldCatsViewHolder>
-                (Cld_cats.class, R.layout.child_cat_row, CldCatsViewHolder.class, mDatabase) {
+                (Cld_cats.class, R.layout.category_row, CldCatsViewHolder.class, databaseReference) {
 
             @Override
             protected void populateViewHolder(CldCatsViewHolder viewHolder, Cld_cats model, int position) {
 
                 viewHolder.setTitle(model.getChild_category_name());
-                viewHolder.setDesc(model.getId_parent_category());
+                viewHolder.setDesc(model.getParent_category());
                 viewHolder.setImage(getApplicationContext(), model.getImage());
 
 
@@ -143,11 +173,6 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
 
 
 
-
-
-
-
-
     public static class CldCatsViewHolder extends RecyclerView.ViewHolder{
 
         View mView;
@@ -161,23 +186,12 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
 
 
             //On click on the card views change activity
-            itemView.setOnClickListener(new View.OnClickListener() {
+            mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     view.getContext().startActivity(new Intent(view.getContext(), ListServicesDynamicActivity.class));
                 }
             });
-
-
-
-
-
-
-
-
-
-
-
 
 
         }
