@@ -1,5 +1,6 @@
 package com.example.kypros.versiononekap;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -40,5 +41,24 @@ public class DisplayServiceDynamicActivity extends BaseActivity {
         //DRAG DOWN TO REFRESH LAYOUT ENDS----------------------------------------------------------
 
 
-    }
+
+
+        //GET parent_id from MainActivity
+        Intent mIntent = getIntent();
+        String service_id = mIntent.getStringExtra("specific_service_id");
+
+        System.out.println("THIS!!!!!!!!!!!" + service_id);
+
+
+
+
+
+
+
+    }//onCreate END
+
+
+
+
+
 }
