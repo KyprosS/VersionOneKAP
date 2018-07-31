@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,8 +14,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.melnykov.fab.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 import android.support.design.widget.NavigationView;
@@ -26,7 +30,6 @@ public class MainActivity extends BaseActivity {
     SwipeRefreshLayout mySwipeRefreshLayout;
     private RecyclerView mBlogList;
     private DatabaseReference mDatabase;
-
     private static FirebaseDatabase firebaseDatabase;
 
     @Override
@@ -44,7 +47,6 @@ public class MainActivity extends BaseActivity {
         //DRAG DOWN TO REFRESH LAYOUT STARTS--------------------------------------------------------
         mySwipeRefreshLayout = (SwipeRefreshLayout)this.findViewById(R.id.swipeContainer);
 
-
         mySwipeRefreshLayout.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
@@ -55,7 +57,6 @@ public class MainActivity extends BaseActivity {
                 }
         );
         //DRAG DOWN TO REFRESH LAYOUT ENDS----------------------------------------------------------
-
 
         //OFFLINE FIREBASE
         if (firebaseDatabase == null) {
@@ -72,7 +73,7 @@ public class MainActivity extends BaseActivity {
         //mBlogList.setLayoutManager(new LinearLayoutManager(this));
         mBlogList.setLayoutManager(new GridLayoutManager(this, 2));
 
-        //OnClick Search button jump to activity SearchResults START ------------------------------
+        //OnClick Search button jump to activity SearchResults START -------------------------------
         floatingSearchIcon = (FloatingActionButton) findViewById(R.id.floatingSearchIcon);
 
         floatingSearchIcon.setOnClickListener(new View.OnClickListener() {
@@ -85,10 +86,10 @@ public class MainActivity extends BaseActivity {
         //On Search button click jump to activity SearchResults END --------------------------------
 
 
-    }//onCreate ENDS HERE
+    }//onCreate ENDS HERE --------------------------------------------------------------------------
 
 
-    //DISABLE BACK BUTTON TO GO TO WELCOME SCREEN START-------------------------------------------------
+    //DISABLE BACK BUTTON TO GO TO WELCOME SCREEN START---------------------------------------------
     @Override
     public void onBackPressed() {
 
@@ -137,28 +138,39 @@ public class MainActivity extends BaseActivity {
 
         DatabaseReference databaseReference; // <----- databaseReference holds the position of the view that is clicked;
 
-
         public ParentCatsViewHolder(final View itemView)
         {
             super(itemView);
             mView = itemView;
 
-            //On click on the card views change activity!!!!!!!!!!!!!!!!!
+            //On click on the card views change activity!!!!!!
             mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
-                    String viewUri = databaseReference.toString();
-                    String parentId = viewUri.substring(viewUri.lastIndexOf("/") + 1);
+                    //GET parent_category_name value from firebase!!!
+                    ValueEventListener parent_nameValueEventListener = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    Intent intent = new Intent(view.getContext(), ChildCategoriesDynamicActivity.class);
-                    intent.putExtra("Parent_category_Id", parentId);
-                    view.getContext().startActivity(intent);
+                            String parent_category_name = dataSnapshot.getValue(String.class);
 
-                }
+                            Intent intent = new Intent(mView.getContext(), ChildCategoriesDynamicActivity.class);
+                            intent.putExtra("Parent_category_Id", parent_category_name);
+                            mView.getContext().startActivity(intent);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    };
+                    databaseReference.child("parent_category_name").addValueEventListener(parent_nameValueEventListener);
+                }//onClick END
+
             });
 
-        }
+        }//ParentCatsViewHolder ENDS
 
         public void setTitle(String title){
             TextView post_title = (TextView) mView.findViewById(R.id.post_title);
@@ -181,7 +193,6 @@ public class MainActivity extends BaseActivity {
             }
         }
 
-
     }
 
-}//END MAIN CLASS HERE
+}//END MAIN CLASS HERE------------------------------------------------------------------------------

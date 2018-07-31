@@ -2,28 +2,20 @@ package com.example.kypros.versiononekap;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.melnykov.fab.FloatingActionButton;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
 
 public class ChildCategoriesDynamicActivity extends BaseActivity {
 
@@ -49,39 +41,21 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
         mySwipeRefreshLayout = (SwipeRefreshLayout)this.findViewById(R.id.swipeContainer);
 
         //Check internet Connectivity
-            mySwipeRefreshLayout.setOnRefreshListener(
-                    new SwipeRefreshLayout.OnRefreshListener() {
-                        @Override
-                        public void onRefresh() {
-                            finish();
-                            startActivity(getIntent());
-                        }
+        mySwipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        finish();
+                        startActivity(getIntent());
                     }
-            );
+                }
+        );
         //DRAG DOWN TO REFRESH LAYOUT ENDS----------------------------------------------------------
 
 
 
 
-        Intent mIntent = getIntent();
-        String parent_id = mIntent.getStringExtra("Parent_category_Id");
-
-        //Log.d("THIS!!!!!!!!!!!!!!!!!!!", "Value: " + databaseReference2);
-
-
-        databaseReference2 = FirebaseDatabase.getInstance().getReference().child("Parent_categories").child(parent_id).child("parent_category_name");
-
-
-
-
-
-
-
-
-        //Log.d("THIS!!!!!!!!!!!!!!!!!!!", "Value: " + mQueryRef);
-
-
-
+        //System.out.println("THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!"+parent_id);
 
 
 
@@ -95,29 +69,6 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
         mBlogList.setHasFixedSize(true);
         //mBlogList.setLayoutManager(new LinearLayoutManager(this));
         mBlogList.setLayoutManager(new GridLayoutManager(this, 2));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -147,8 +98,12 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
     protected void onStart(){
         super.onStart();
 
+        //GET parent_id from MainActivity
+        Intent mIntent = getIntent();
+        String parent_id = mIntent.getStringExtra("Parent_category_Id");
+
         FirebaseRecyclerAdapter<Cld_cats, CldCatsViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Cld_cats, CldCatsViewHolder>
-                (Cld_cats.class, R.layout.category_row, CldCatsViewHolder.class, databaseReference) {
+                (Cld_cats.class, R.layout.category_row, CldCatsViewHolder.class, databaseReference.orderByChild("parent_category").equalTo(parent_id)) {
 
             @Override
             protected void populateViewHolder(CldCatsViewHolder viewHolder, Cld_cats model, int position) {
@@ -157,20 +112,11 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
                 viewHolder.setDesc(model.getParent_category());
                 viewHolder.setImage(getApplicationContext(), model.getImage());
 
-
-
-
-
-
-                //HERE MAGIC HAPPENS
             }
         };
         mBlogList.setAdapter(firebaseRecyclerAdapter);
 
     }
-
-
-
 
 
     public static class CldCatsViewHolder extends RecyclerView.ViewHolder{
@@ -183,8 +129,6 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
             mView = itemView;
 
 
-
-
             //On click on the card views change activity
             mView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -192,7 +136,6 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
                     view.getContext().startActivity(new Intent(view.getContext(), ListServicesDynamicActivity.class));
                 }
             });
-
 
         }
 
@@ -216,12 +159,7 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
             } else{
                 Picasso.with(ctx).load(image).into(post_Image);
             }
-
-
         }
-
     }
-
-
 
 }
