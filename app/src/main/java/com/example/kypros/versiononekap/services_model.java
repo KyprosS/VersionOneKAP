@@ -8,44 +8,45 @@ public class services_model {
     private String fax;
     private String id_child_category;
     private String id_district;
-    private String id_parent_category;
     private String id_timetable;
-    private String id_user;
+    private String image;
     private String latitude;
     private String longitude;
     private String name;
+    private String parent_category;
     private String phone;
     private String phone2;
     private String postalcode;
     private String price;
     private String rating;
     private String title;
+    private String logo_image;
 
     public services_model(){
 
     }
 
-    public services_model(String address, String description, String email, String fax, String id_child_category, String id_district, String id_parent_category, String id_timetable, String id_user, String latitude, String longitude, String name, String phone, String phone2, String postalcode, String price, String rating, String title) {
+    public services_model(String address, String description, String email, String fax, String id_child_category, String id_district, String id_timetable, String image, String latitude, String longitude, String name, String parent_category, String phone, String phone2, String postalcode, String price, String rating, String title, String logo_image) {
         this.address = address;
         this.description = description;
         this.email = email;
         this.fax = fax;
         this.id_child_category = id_child_category;
         this.id_district = id_district;
-        this.id_parent_category = id_parent_category;
         this.id_timetable = id_timetable;
-        this.id_user = id_user;
+        this.image = image;
         this.latitude = latitude;
         this.longitude = longitude;
         this.name = name;
+        this.parent_category = parent_category;
         this.phone = phone;
         this.phone2 = phone2;
         this.postalcode = postalcode;
         this.price = price;
         this.rating = rating;
         this.title = title;
+        this.logo_image = logo_image;
     }
-
 
     public String getAddress() {
         return address;
@@ -95,14 +96,6 @@ public class services_model {
         this.id_district = id_district;
     }
 
-    public String getId_parent_category() {
-        return id_parent_category;
-    }
-
-    public void setId_parent_category(String id_parent_category) {
-        this.id_parent_category = id_parent_category;
-    }
-
     public String getId_timetable() {
         return id_timetable;
     }
@@ -111,12 +104,12 @@ public class services_model {
         this.id_timetable = id_timetable;
     }
 
-    public String getId_user() {
-        return id_user;
+    public String getImage() {
+        return image;
     }
 
-    public void setId_user(String id_user) {
-        this.id_user = id_user;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getLatitude() {
@@ -141,6 +134,14 @@ public class services_model {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getParent_category() {
+        return parent_category;
+    }
+
+    public void setParent_category(String parent_category) {
+        this.parent_category = parent_category;
     }
 
     public String getPhone() {
@@ -189,5 +190,13 @@ public class services_model {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getLogo_image() {
+        return logo_image;
+    }
+
+    public void setLogo_image(String logo_image) {
+        this.logo_image = logo_image;
     }
 }

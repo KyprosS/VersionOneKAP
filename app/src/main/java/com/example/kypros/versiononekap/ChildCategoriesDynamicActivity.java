@@ -88,6 +88,9 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
         Intent mIntent = getIntent();
         String parent_id = mIntent.getStringExtra("Parent_category_Id");
 
+        getSupportActionBar().setTitle(parent_id);
+
+
         FirebaseRecyclerAdapter<Cld_cats, CldCatsViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Cld_cats, CldCatsViewHolder>
                 (Cld_cats.class, R.layout.category_row, CldCatsViewHolder.class, databaseReference.orderByChild("parent_category").equalTo(parent_id)) {
 
@@ -114,11 +117,6 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
         {
             super(itemView);
             mView = itemView;
-
-
-
-
-
 
             //On click on the card views change activity!!!!!!
             mView.setOnClickListener(new View.OnClickListener() {

@@ -1,6 +1,7 @@
 package com.example.kypros.versiononekap;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.os.Bundle;
@@ -8,16 +9,26 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends BaseActivity {
 
-    private Button btnChangeEmail, btnChangePassword, btnSendResetEmail, btnRemoveUser, changeEmail, changePassword, sendEmail, remove, signOut;
+    private Button changeEmail;
+    private Button changePassword;
+    private Button sendEmail;
+    private Button remove;
     private EditText oldEmail, newEmail, password, newPassword;
     private ProgressBar progressBar;
     private FirebaseAuth.AuthStateListener authListener;
@@ -36,11 +47,11 @@ public class ProfileActivity extends BaseActivity {
         //ADD BURGER MENU END ----------------------------------------------------------------------
 
 
-        //get firebase auth instance
-        auth = FirebaseAuth.getInstance();
-
         //get current user
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        //get firebase auth instance
+        auth = FirebaseAuth.getInstance();
 
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -51,19 +62,73 @@ public class ProfileActivity extends BaseActivity {
                     // launch login activity
                     startActivity(new Intent(ProfileActivity.this, MainActivity.class));
                     finish();
+                }else{
+
+
+                    for (UserInfo user2: FirebaseAuth.getInstance().getCurrentUser().getProviderData()) {
+
+                        //CHECK to WHICH PROVIDER IS LOGGED IN
+                        //Google Login
+                        if (user2.getProviderId().equals("google.com")) {
+
+                            ((TextView)findViewById(R.id.user_profile_name)).setText(user.getDisplayName());
+                            ((TextView)findViewById(R.id.user_profile_short_bio)).setText(user.getEmail());
+
+                            Uri uri = user.getPhotoUrl();
+                            Picasso.with(ProfileActivity.this)
+                                    .load(uri)
+                                    .placeholder(android.R.drawable.sym_def_app_icon)
+                                    .error(android.R.drawable.sym_def_app_icon)
+                                    .into((ImageView)findViewById(R.id.user_profile_photo));
+
+                        }else{
+                            //((TextView)findViewById(R.id.user_profile_name)).setText("");
+                            ((TextView)findViewById(R.id.user_profile_short_bio)).setText(user.getEmail());
+                            ((CircleImageView)findViewById(R.id.user_profile_photo)).setImageDrawable(getResources().getDrawable(R.drawable.firebase));
+                        }
+                    }
+
+
+
+
                 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             }
         };
 
-        btnChangeEmail = (Button) findViewById(R.id.change_email_button);
-        btnChangePassword = (Button) findViewById(R.id.change_password_button);
-        btnSendResetEmail = (Button) findViewById(R.id.sending_pass_reset_button);
-        btnRemoveUser = (Button) findViewById(R.id.remove_user_button);
+        Button btnChangeEmail = (Button) findViewById(R.id.change_email_button);
+        Button btnChangePassword = (Button) findViewById(R.id.change_password_button);
+        Button btnSendResetEmail = (Button) findViewById(R.id.sending_pass_reset_button);
+        Button btnRemoveUser = (Button) findViewById(R.id.remove_user_button);
         changeEmail = (Button) findViewById(R.id.changeEmail);
         changePassword = (Button) findViewById(R.id.changePass);
         sendEmail = (Button) findViewById(R.id.send);
         remove = (Button) findViewById(R.id.remove);
-        signOut = (Button) findViewById(R.id.sign_out);
+        Button signOut = (Button) findViewById(R.id.sign_out);
 
         oldEmail = (EditText) findViewById(R.id.old_email);
         newEmail = (EditText) findViewById(R.id.new_email);

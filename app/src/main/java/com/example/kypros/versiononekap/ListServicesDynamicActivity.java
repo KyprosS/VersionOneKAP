@@ -8,6 +8,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -90,6 +91,9 @@ public class ListServicesDynamicActivity extends BaseActivity {
         Intent mIntent = getIntent();
         String child_id = mIntent.getStringExtra("Child_category_Id");
 
+        getSupportActionBar().setTitle(child_id);
+
+
         FirebaseRecyclerAdapter<services_listing, ServicesViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<services_listing, ServicesViewHolder>
                 (services_listing.class, R.layout.services_row, ServicesViewHolder.class, databaseReference.orderByChild("id_child_category").equalTo(child_id)) {
 
@@ -107,10 +111,6 @@ public class ListServicesDynamicActivity extends BaseActivity {
     }
 
 
-
-
-
-
     public static class ServicesViewHolder extends RecyclerView.ViewHolder{
 
         View mView;
@@ -121,11 +121,6 @@ public class ListServicesDynamicActivity extends BaseActivity {
             super(itemView);
             mView = itemView;
 
-
-
-
-
-            /*
             //On click on the card views change activity!!!!!!
             mView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -151,11 +146,8 @@ public class ListServicesDynamicActivity extends BaseActivity {
                 }//onClick END
 
             });
-            */
 
         }
-
-
 
         public void setTitle(String title){
             TextView post_title = (TextView) mView.findViewById(R.id.post_title);
@@ -180,12 +172,5 @@ public class ListServicesDynamicActivity extends BaseActivity {
         }
 
     }
-
-
-
-
-
-
-
 
 }

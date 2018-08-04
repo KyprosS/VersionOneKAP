@@ -14,7 +14,7 @@
         android:id="@+id/child_card"
         android:layout_height="248dp"
         android:orientation="vertical"
-        android:background="#121111" >
+        android:background="#1c2731" >
 
         <ImageView
             android:layout_width="match_parent"
@@ -27,7 +27,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/post_title"
             android:text="POST TITLE"
-            android:textSize="20dp"
+            android:textSize="16sp"
+            android:layout_marginLeft="10dp"
             android:textColor="#FFFFFF" />
 
         <TextView
@@ -35,6 +36,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/post_desc"
             android:text=""
+            android:layout_marginLeft="10dp"
             android:textColor="#FFFFFF" />
 
     </LinearLayout>

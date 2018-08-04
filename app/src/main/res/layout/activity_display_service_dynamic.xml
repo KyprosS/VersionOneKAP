@@ -1,39 +1,339 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context=".DisplayServiceDynamicActivity">
 
-    <FrameLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/content"
-        tools:ignore="UselessParent">
+        android:layout_height="match_parent">
 
-
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/swipeContainer"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:layout_height="wrap_content">
 
+            <ImageView
+                android:id="@+id/imv_service_cover_photo"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/header_cover_image" />
 
-            <TextView
+            <ImageButton
+                android:id="@+id/imv_service_logo_photo"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_below="@+id/imv_service_cover_photo"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-60dp"
+                android:background="@drawable/profile_circular_border_imageview"
+                android:elevation="15dp"
+                android:padding="10dp"
+                android:layout_marginBottom="90dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/man" />
+
+            <RelativeLayout
+                android:id="@+id/service_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginTop="50dp"
-                android:text="Display Service Dynamic Activity" />
+                android:layout_below="@+id/imv_service_cover_photo"
+                android:background="@color/colorPrimaryDark"
+                android:elevation="4dp"
+                android:paddingBottom="15dp">
+
+                <TextView
+                    android:id="@+id/tv_service_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="60dp"
+                    android:text="@string/service_title"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <android.support.v7.widget.AppCompatRatingBar
+                    android:id="@+id/tv_service_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/tv_service_title"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:theme="@style/RatingBar"
+                    android:numStars="5"
+                    android:clickable="false"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_below="@+id/service_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Description"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:textSize="18sp"
+                    android:drawableStart="@drawable/ic_description_white_24dp"
+                    />
+                <TextView
+                    android:id="@+id/tv_service_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Description"
+                    android:autoLink="all"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="25dp"
+                    />
 
 
-        </android.support.v4.widget.SwipeRefreshLayout>
 
 
-    </FrameLayout>
-</LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:weightSum="3" >
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:text="Availability"
+                                android:textSize="18sp"
+                                android:drawableStart="@drawable/ic_access_time_white_24dp"
+                                />
+
+                            <TextView
+                                android:id="@+id/tv_service_timetable"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                android:text="Timetable"
+                                />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:text="District"
+                                android:textSize="18sp"
+                                android:drawableStart="@drawable/ic_terrain_white_24dp"
+                                />
+
+                            <TextView
+                                android:id="@+id/tv_service_district"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                android:text="District" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:text="Price"
+                                android:textSize="18sp"
+                                android:drawableStart="@drawable/ic_euro_symbol_white_24dp"
+                                />
+
+                            <TextView
+                                android:id="@+id/tv_service_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                android:text="Price"
+                                />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Address"
+                    android:textSize="18sp"
+                    android:drawableStart="@drawable/ic_business_white_24dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_service_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Address"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="10dp"
+                    />
+
+
+
+
+
+                <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:id="@+id/map"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp" />
+
+
+
+
+
+
+
+                <TextView
+                    android:id="@+id/tv_service_latitude"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="latitude"
+                    android:drawableStart="@drawable/ic_add_white_24dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_service_longitude"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="longitude"
+                    android:drawableStart="@drawable/ic_add_white_24dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_service_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Name"
+                    android:drawableStart="@drawable/ic_add_white_24dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_service_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Phone"
+                    android:drawableStart="@drawable/ic_add_white_24dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_service_phone2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Phone2"
+                    android:drawableStart="@drawable/ic_add_white_24dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_service_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Email"
+                    android:autoLink="email"
+                    android:drawableStart="@drawable/ic_add_white_24dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_service_fax"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Fax"
+                    android:drawableStart="@drawable/ic_add_white_24dp"
+                    />
+
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/container2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/content">
+
+            <io.github.yavski.fabspeeddial.FabSpeedDial
+                android:id="@+id/floatingCallIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                app:fabDrawable="@drawable/ic_more_horiz_white_24dp"
+                app:fabBackgroundTint="@color/floating_icon"
+                app:fabGravity="bottom_end"
+                app:fabMenu="@menu/call_menu"
+                app:miniFabBackgroundTint="@color/floating_icon"
+                app:miniFabDrawableTint="@color/white"
+                app:miniFabTitleTextColor="@color/colorPrimaryDark"
+                />
+
+        </FrameLayout>
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
