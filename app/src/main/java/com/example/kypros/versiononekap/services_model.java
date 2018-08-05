@@ -21,12 +21,14 @@ public class services_model {
     private String rating;
     private String title;
     private String logo_image;
+    private String user_ID;
+
 
     public services_model(){
 
     }
 
-    public services_model(String address, String description, String email, String fax, String id_child_category, String id_district, String id_timetable, String image, String latitude, String longitude, String name, String parent_category, String phone, String phone2, String postalcode, String price, String rating, String title, String logo_image) {
+    public services_model(String address, String description, String email, String fax, String id_child_category, String id_district, String id_timetable, String image, String latitude, String longitude, String name, String parent_category, String phone, String phone2, String postalcode, String price, String rating, String title, String logo_image, String user_ID) {
         this.address = address;
         this.description = description;
         this.email = email;
@@ -46,6 +48,7 @@ public class services_model {
         this.rating = rating;
         this.title = title;
         this.logo_image = logo_image;
+        this.user_ID = user_ID;
     }
 
     public String getAddress() {
@@ -198,5 +201,13 @@ public class services_model {
 
     public void setLogo_image(String logo_image) {
         this.logo_image = logo_image;
+    }
+
+    public String getUser_ID() {
+        return user_ID;
+    }
+
+    public void setUser_ID(String user_ID) {
+        this.user_ID = user_ID;
     }
 }

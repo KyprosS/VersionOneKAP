@@ -177,11 +177,6 @@ public class MainActivity extends BaseActivity {
             post_title.setText(title);
         }
 
-       /* public void setDesc(String desc){
-            TextView post_desc = (TextView) mView.findViewById(R.id.post_desc);
-            post_desc.setText(desc);
-        }*/
-
         public void setImage_parent(Context ctx, String image){
             ImageView post_Image = (ImageView) mView.findViewById(R.id.post_image);
 

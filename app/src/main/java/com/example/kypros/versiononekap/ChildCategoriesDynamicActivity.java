@@ -28,7 +28,6 @@ public class ChildCategoriesDynamicActivity extends BaseActivity {
     private DatabaseReference databaseReference;
     FloatingActionButton floatingSearchIcon;
 
-
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

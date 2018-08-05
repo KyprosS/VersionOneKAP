@@ -30,5 +30,11 @@
         <item name="colorControlActivated">#fdb122</item>
     </style>
 
+    <style name="CategorySpinner">
+        <!-- Color when pressed -->
+        <item name="colorAccent">#FFFFFF</item>
+        <!-- Default color for the dropdown arrow and line -->
+        <item name="colorControlNormal">#FFFFFF</item>
+    </style>
 
 </resources>

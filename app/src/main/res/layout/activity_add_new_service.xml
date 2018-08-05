@@ -43,26 +43,174 @@
 
 
 
-         <!--   <LinearLayout
-                android:weightSum="2"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:weightSum="2">
+
+                    <ImageView
+                        android:id="@+id/imv_Logo"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="3dp"
+                        android:src="@drawable/ic_image_white_24dp" />
+
+                       <info.hoang8f.widget.FButton
+                           android:id="@+id/btnUploadLogo"
+                           android:text=" *Choose logo"
+                           android:textColor="@android:color/white"
+                           android:layout_width="160dp"
+                           android:layout_height="wrap_content"
+                           app:fButtonColor="#797979"
+                           app:shadowColor="#000"
+                           app:shadowEnabled="true"
+                           app:shadowHeight="5dp"
+                           app:cornerRadius="5dp"
+                           android:drawableStart="@drawable/ic_cloud_upload_white_24dp"
+                           android:paddingLeft="10dp"
+                           android:paddingRight="10dp"
+                           />
+
+                   </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:weightSum="2"
+                    android:layout_marginBottom="15dp">
+
+                    <ImageView
+                        android:id="@+id/imv_Image"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="3dp"
+                        android:src="@drawable/ic_image_white_24dp" />
+
+                    <info.hoang8f.widget.FButton
+                        android:id="@+id/btnUploadImage"
+                        android:text=" *Choose image"
+                        android:textColor="@android:color/white"
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        app:fButtonColor="#797979"
+                        app:shadowColor="#000"
+                        app:shadowEnabled="true"
+                        app:shadowHeight="5dp"
+                        app:cornerRadius="5dp"
+                        android:drawableStart="@drawable/ic_cloud_upload_white_24dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        />
+
+                </LinearLayout>
+
+
+
+
+
+            <LinearLayout
                 android:orientation="horizontal"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
-                -->
-                <info.hoang8f.widget.FButton
-                    android:id="@+id/btnUpload"
-                    android:text="Upload service photo"
-                    android:textColor="@android:color/white"
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="*Parent Category"
+                    android:textSize="18sp"
+
+                    android:layout_marginRight="15dp"
+                    />
+
+                <com.reginald.editspinner.EditSpinner
+                    android:id="@+id/spn_Categories"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:fButtonColor="#797979"
-                    app:shadowColor="#000"
-                    app:shadowEnabled="true"
-                    app:shadowHeight="5dp"
-                    app:cornerRadius="5dp"
-                    android:drawableLeft="@drawable/ic_cloud_upload_white_24dp"
-                    android:paddingLeft="30dp"
+                    android:text="*Select"
+                    android:textColorHint="@color/white"
+                    android:theme="@style/CategorySpinner"
+                    app:dropDownDrawable="@drawable/ic_add_white_24dp"
+                    app:dropDownDrawableSpacing="15dp"
+                    app:dropDownDrawableWidth="25dp"
+                    app:dropDownDrawableHeight="25dp"
+                    android:textColor="@color/white"
+                    android:editable="false"
                     />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_marginTop="15dp"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="*Child Category"
+                    android:textSize="18sp"
+                    android:layout_marginRight="15dp"
+
+                    />
+
+
+                <com.reginald.editspinner.EditSpinner
+                    android:id="@+id/spn_child_cat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="*Select"
+                    android:textColorHint="@color/white"
+                    android:theme="@style/CategorySpinner"
+                    app:dropDownDrawable="@drawable/ic_add_white_24dp"
+                    app:dropDownDrawableSpacing="15dp"
+                    app:dropDownDrawableWidth="25dp"
+                    app:dropDownDrawableHeight="25dp"
+                    android:textColor="@color/white"
+                    android:editable="false"
+                    />
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -70,6 +218,7 @@
                 <com.rengwuxian.materialedittext.MaterialEditText
                     android:id="@+id/edtTitle"
                     android:hint="*Title"
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColorHint="@color/white"
@@ -84,18 +233,8 @@
                     app:met_iconLeft="@drawable/edit"
                     />
 
-                <com.reginald.editspinner.EditSpinner
-                    android:id="@+id/spn_Categories"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="*Select parent category"
-                    android:textColorHint="@color/white"
-                    app:dropDownDrawable="@drawable/ic_add_white_24dp"
-                    app:dropDownDrawableSpacing="15dp"
-                    app:dropDownDrawableWidth="25dp"
-                    app:dropDownDrawableHeight="25dp"
-                    android:textColor="@color/white"
-                    />
+
+
 
                 <com.rengwuxian.materialedittext.MaterialEditText
                     android:id="@+id/edtDescription"
@@ -111,7 +250,7 @@
                     app:met_floatingLabel="highlight"
                     app:met_primaryColor="@color/white"
                     app:met_singleLineEllipsis="true"
-                    app:met_iconLeft="@drawable/ic_description_white_24dp"
+                    app:met_iconLeft="@drawable/description"
                     />
 
                 <com.rengwuxian.materialedittext.MaterialEditText
@@ -123,7 +262,7 @@
                     android:text=""
                     android:textColor="@color/white"
                     android:textSize="16sp"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     app:met_baseColor="@color/white"
                     app:met_floatingLabel="highlight"
                     app:met_primaryColor="@color/white"
@@ -131,34 +270,53 @@
                     app:met_iconLeft="@drawable/euro_price"
                     />
 
+
+
+
+
+
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="*District"
+                    android:textSize="18sp"
+                    android:layout_marginRight="15dp"
+                    android:drawableStart="@drawable/ic_terrain_white_24dp"
+
+                    />
+
                 <com.reginald.editspinner.EditSpinner
                     android:id="@+id/spn_Districts"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="*Select District"
+                    android:hint="*Select"
                     android:textColorHint="@color/white"
+                    android:theme="@style/CategorySpinner"
                     app:dropDownDrawable="@drawable/ic_add_white_24dp"
                     app:dropDownDrawableSpacing="15dp"
                     app:dropDownDrawableWidth="25dp"
                     app:dropDownDrawableHeight="25dp"
-                    android:textColor="@color/white" />
-
-                <com.rengwuxian.materialedittext.MaterialEditText
-                    android:id="@+id/edtAddress"
-                    android:hint="*Address"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="@color/white"
-                    android:text=""
                     android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:inputType="text"
-                    app:met_baseColor="@color/white"
-                    app:met_floatingLabel="highlight"
-                    app:met_primaryColor="@color/white"
-                    app:met_singleLineEllipsis="true"
-                    app:met_iconLeft="@drawable/address"
-                    />
+                    android:editable="false" />
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
 
                 <com.rengwuxian.materialedittext.MaterialEditText
                     android:id="@+id/edtPostalCode"
@@ -179,6 +337,42 @@
                     />
 
                 <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/edtAddress"
+                    android:hint="*Address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/white"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:inputType="text"
+                    app:met_baseColor="@color/white"
+                    app:met_floatingLabel="highlight"
+                    app:met_primaryColor="@color/white"
+                    app:met_singleLineEllipsis="true"
+                    app:met_iconLeft="@drawable/address"
+                    />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+                <com.rengwuxian.materialedittext.MaterialEditText
                     android:id="@+id/edtLocation"
                     android:hint="*Location"
                     android:layout_width="match_parent"
@@ -194,6 +388,53 @@
                     app:met_singleLineEllipsis="true"
                     app:met_iconLeft="@drawable/location"
                     />
+                    -->
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text=" Drag marker to your business location"
+                    android:textSize="18sp"
+                    android:drawableStart="@drawable/ic_location_on_white_24dp"
+                    />
+
+                <!--Google Map -->
+                <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:id="@+id/map"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:layout_marginBottom="10dp"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 <com.rengwuxian.materialedittext.MaterialEditText
                     android:id="@+id/edtTimetable"
@@ -254,9 +495,9 @@
                     android:textColorHint="@color/white"
                     android:text=""
                     android:textColor="@color/white"
-                    app:met_maxCharacters="8"
                     android:textSize="16sp"
                     android:inputType="number"
+                    app:met_maxCharacters="8"
                     app:met_baseColor="@color/white"
                     app:met_floatingLabel="highlight"
                     app:met_primaryColor="@color/white"
@@ -272,9 +513,9 @@
                     android:textColorHint="@color/white"
                     android:text=""
                     android:textColor="@color/white"
-                    app:met_maxCharacters="8"
                     android:textSize="16sp"
                     android:inputType="number"
+                    app:met_maxCharacters="8"
                     app:met_baseColor="@color/white"
                     app:met_floatingLabel="highlight"
                     app:met_primaryColor="@color/white"
@@ -288,11 +529,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColorHint="@color/white"
-                    app:met_maxCharacters="8"
                     android:text=""
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:inputType="number"
+                    app:met_maxCharacters="8"
                     app:met_baseColor="@color/white"
                     app:met_floatingLabel="highlight"
                     app:met_primaryColor="@color/white"
@@ -300,16 +541,14 @@
                     app:met_iconLeft="@drawable/fax"
                     />
 
-
-
-            <LinearLayout
-                android:weightSum="1"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:weightSum="1"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <info.hoang8f.widget.FButton
-                        android:id="@+id/btnSelect"
+                        android:id="@+id/btnSubmit"
                         android:text="SUBMIT"
                         android:background="@color/colorPrimary"
                         android:textColor="@android:color/white"
@@ -327,13 +566,13 @@
                         app:cornerRadius="5dp"
                         />
 
-            </LinearLayout>
+                </LinearLayout>
 
 
             </LinearLayout>
 
 
-</RelativeLayout>
+        </RelativeLayout>
     </ScrollView>
 </android.support.design.widget.CoordinatorLayout>
 

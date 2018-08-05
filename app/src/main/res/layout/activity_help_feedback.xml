@@ -62,7 +62,7 @@
         android:textSize="20dp"
         android:textColor="@color/white"
         android:layout_marginBottom="10dp"
-        android:text="Enter our message:"/>
+        android:text="Enter your message:"/>
 
     <LinearLayout
         android:orientation="horizontal"
