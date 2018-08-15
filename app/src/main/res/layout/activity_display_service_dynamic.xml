@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
     tools:context=".DisplayServiceDynamicActivity">
 
@@ -77,6 +77,7 @@
                 android:orientation="vertical"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
                 <TextView
@@ -100,6 +101,13 @@
                     android:textSize="15sp"
                     android:layout_marginBottom="25dp"
                     />
+
+                <View
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -130,7 +138,6 @@
                                 android:textSize="18sp"
                                 android:drawableStart="@drawable/ic_access_time_white_24dp"
                                 />
-
                             <TextView
                                 android:id="@+id/tv_service_timetable"
                                 android:layout_width="wrap_content"
@@ -139,7 +146,6 @@
                                 android:textSize="15sp"
                                 android:text="Timetable"
                                 />
-
                         </LinearLayout>
 
                         <LinearLayout
@@ -157,7 +163,6 @@
                                 android:textSize="18sp"
                                 android:drawableStart="@drawable/ic_terrain_white_24dp"
                                 />
-
                             <TextView
                                 android:id="@+id/tv_service_district"
                                 android:layout_width="wrap_content"
@@ -165,7 +170,6 @@
                                 android:textColor="@color/white"
                                 android:textSize="15sp"
                                 android:text="District" />
-
                         </LinearLayout>
 
                         <LinearLayout
@@ -198,7 +202,12 @@
                 </LinearLayout>
 
 
-
+                <View
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -217,13 +226,47 @@
                     android:layout_marginBottom="10dp"
                     />
 
-                <!--Google Map -->
-                <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:name="com.google.android.gms.maps.SupportMapFragment"
-                    android:id="@+id/map"
+
+
+
+
+
+
+                <LinearLayout
+                    android:id="@+id/container"
                     android:layout_width="match_parent"
-                    android:layout_height="170dp"
-                    android:layout_marginBottom="10dp"/>
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:id="@+id/content">
+
+                        <!--Google Map -->
+                        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:name="com.google.android.gms.maps.SupportMapFragment"
+                            android:id="@+id/map"
+                            android:layout_width="match_parent"
+                            android:layout_height="170dp"
+                            android:layout_marginBottom="10dp"/>
+
+                        <com.melnykov.fab.FloatingActionButton
+                            android:id="@+id/floatingDirectionsIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|end"
+                            android:layout_marginBottom="20dp"
+                            android:layout_marginEnd="12dp"
+                            android:src="@drawable/ic_directions_white_24dp"
+                            fab:fab_colorNormal="@color/floating_icon"
+                            fab:fab_colorPressed="@color/colorPrimary"
+                            fab:fab_colorRipple="@color/colorPrimaryDark"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            />
+                    </FrameLayout>
+                </LinearLayout>
 
 
                 <LinearLayout
@@ -231,7 +274,6 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp">
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -248,7 +290,6 @@
                         android:textSize="15sp"
                         android:text="Name"
                         />
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -256,7 +297,6 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp">
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -274,7 +314,6 @@
                         android:text="Email"
                         android:autoLink="email"
                         />
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -282,7 +321,6 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp">
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -291,7 +329,6 @@
                         android:textSize="18sp"
                         android:drawableStart="@drawable/ic_gradient_white_24dp"
                         />
-
                     <TextView
                         android:id="@+id/tv_service_fax"
                         android:layout_width="wrap_content"
@@ -300,55 +337,14 @@
                         android:textSize="15sp"
                         android:text="Fax"
                         />
-
                 </LinearLayout>
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center"
-                    android:layout_marginTop="15dp">
 
-                    <info.hoang8f.widget.FButton
-                        android:id="@+id/tv_service_phone"
-                        android:text="Phone"
-                        android:textColor="@color/white"
-                        android:layout_width="140dp"
-                        android:layout_height="wrap_content"
-                        app:fButtonColor="@color/green"
-                        app:shadowColor="#000"
-                        android:layout_gravity="center_horizontal"
-                        app:shadowEnabled="true"
-                        app:shadowHeight="5dp"
-                        app:cornerRadius="5dp"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:drawableStart="@drawable/ic_phone_white_24dp"
-                        />
-
-
-                    <info.hoang8f.widget.FButton
-                        android:id="@+id/tv_service_phone2"
-                        android:text="Phone2"
-                        android:textColor="@color/white"
-                        android:layout_width="140dp"
-                        android:layout_height="wrap_content"
-                        app:fButtonColor="@color/green"
-                        app:shadowColor="#000"
-                        android:layout_gravity="center_horizontal"
-                        app:shadowEnabled="true"
-                        app:shadowHeight="5dp"
-                        app:cornerRadius="5dp"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:drawableLeft="@drawable/ic_phone_white_24dp"
-                        android:layout_marginStart="40dp"
-                        />
-
-                </LinearLayout>
-
+                <View
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -357,7 +353,7 @@
                     android:layout_marginBottom="5dp"
                     android:text="Service added by"
                     android:textColor="@color/white"
-                    android:layout_marginTop="35dp"
+                    android:layout_marginTop="25dp"
                     android:textSize="16dp"
                     />
                 <TextView
@@ -368,41 +364,66 @@
                     android:text="User_Email"
                     android:textColor="@color/white"
                     android:textSize="14sp"
-                    android:layout_marginBottom="25dp"
+                    android:layout_marginBottom="80dp"
                     />
-
-
 
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>
 
-    <LinearLayout
-        android:id="@+id/container2"
+
+
+
+
+
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:id="@+id/content">
+        android:fitsSystemWindows="true"
+        android:layout_marginBottom="20dp">
 
-            <io.github.yavski.fabspeeddial.FabSpeedDial
-                android:id="@+id/floatingCallIcon"
-                android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:layout_marginTop="15dp">
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/tv_service_phone"
+                android:text="Phone"
+                android:textColor="@color/white"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                app:fabDrawable="@drawable/ic_more_horiz_white_24dp"
-                app:fabBackgroundTint="@color/floating_icon"
-                app:fabGravity="bottom_end"
-                app:fabMenu="@menu/call_menu"
-                app:miniFabBackgroundTint="@color/floating_icon"
-                app:miniFabDrawableTint="@color/white"
-                app:miniFabTitleTextColor="@color/colorPrimaryDark"
-                />
+                app:fButtonColor="@color/green"
+                app:shadowColor="#000"
+                android:layout_gravity="center_horizontal"
+                app:shadowEnabled="true"
+                app:shadowHeight="5dp"
+                app:cornerRadius="5dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:drawableStart="@drawable/ic_phone_white_24dp" />
 
-        </FrameLayout>
-    </LinearLayout>
+            <info.hoang8f.widget.FButton
+                android:id="@+id/tv_service_phone2"
+                android:text="Phone2"
+                android:textColor="@color/white"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                app:fButtonColor="@color/green"
+                app:shadowColor="#000"
+                android:layout_gravity="center_horizontal"
+                app:shadowEnabled="true"
+                app:shadowHeight="5dp"
+                app:cornerRadius="5dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:drawableLeft="@drawable/ic_phone_white_24dp"
+                android:layout_marginStart="40dp" />
+        </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
+
 
 </android.support.design.widget.CoordinatorLayout>

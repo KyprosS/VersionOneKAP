@@ -8,6 +8,7 @@
     tools:context=".AddNewServiceActivity">
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -78,23 +79,23 @@
                         android:layout_marginRight="3dp"
                         android:src="@drawable/ic_image_white_24dp" />
 
-                       <info.hoang8f.widget.FButton
-                           android:id="@+id/btnUploadLogo"
-                           android:text=" *Choose logo"
-                           android:textColor="@android:color/white"
-                           android:layout_width="160dp"
-                           android:layout_height="wrap_content"
-                           app:fButtonColor="#797979"
-                           app:shadowColor="#000"
-                           app:shadowEnabled="true"
-                           app:shadowHeight="5dp"
-                           app:cornerRadius="5dp"
-                           android:drawableStart="@drawable/ic_cloud_upload_white_24dp"
-                           android:paddingLeft="10dp"
-                           android:paddingRight="10dp"
-                           />
+                    <info.hoang8f.widget.FButton
+                        android:id="@+id/btnUploadLogo"
+                        android:text=" *Choose logo"
+                        android:textColor="@android:color/white"
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        app:fButtonColor="#797979"
+                        app:shadowColor="#000"
+                        app:shadowEnabled="true"
+                        app:shadowHeight="5dp"
+                        app:cornerRadius="5dp"
+                        android:drawableStart="@drawable/ic_cloud_upload_white_24dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        />
 
-                   </LinearLayout>
+                </LinearLayout>
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -134,85 +135,70 @@
 
 
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:text="*Parent Category"
-                    android:textSize="18sp"
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text="*Parent Category"
+                        android:textSize="18sp"
 
-                    android:layout_marginRight="15dp"
-                    />
+                        android:layout_marginRight="15dp"
+                        />
 
-                <com.reginald.editspinner.EditSpinner
-                    android:id="@+id/spn_Categories"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="*Select"
-                    android:textColorHint="@color/white"
-                    android:theme="@style/CategorySpinner"
-                    app:dropDownDrawable="@drawable/ic_add_white_24dp"
-                    app:dropDownDrawableSpacing="15dp"
-                    app:dropDownDrawableWidth="25dp"
-                    app:dropDownDrawableHeight="25dp"
-                    android:textColor="@color/white"
-                    android:editable="false"
-                    />
+                    <com.reginald.editspinner.EditSpinner
+                        android:id="@+id/spn_Categories"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="*Select"
+                        android:textColorHint="@color/white"
+                        android:theme="@style/CategorySpinner"
+                        app:dropDownDrawable="@drawable/ic_add_white_24dp"
+                        app:dropDownDrawableSpacing="15dp"
+                        app:dropDownDrawableWidth="25dp"
+                        app:dropDownDrawableHeight="25dp"
+                        android:textColor="@color/white"
+                        android:editable="false"
+                        />
 
-            </LinearLayout>
+                </LinearLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_marginTop="15dp"
-                android:layout_height="wrap_content">
-
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:text="*Child Category"
-                    android:textSize="18sp"
-                    android:layout_marginRight="15dp"
-
-                    />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_marginTop="15dp"
+                    android:layout_height="wrap_content">
 
 
-                <com.reginald.editspinner.EditSpinner
-                    android:id="@+id/spn_child_cat"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="*Select"
-                    android:textColorHint="@color/white"
-                    android:theme="@style/CategorySpinner"
-                    app:dropDownDrawable="@drawable/ic_add_white_24dp"
-                    app:dropDownDrawableSpacing="15dp"
-                    app:dropDownDrawableWidth="25dp"
-                    app:dropDownDrawableHeight="25dp"
-                    android:textColor="@color/white"
-                    android:editable="false"
-                    />
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text="*Child Category"
+                        android:textSize="18sp"
+                        android:layout_marginRight="15dp"
+                        />
 
-            </LinearLayout>
+                    <com.reginald.editspinner.EditSpinner
+                        android:id="@+id/spn_child_cat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="*Select"
+                        android:textColorHint="@color/white"
+                        android:theme="@style/CategorySpinner"
+                        app:dropDownDrawable="@drawable/ic_add_white_24dp"
+                        app:dropDownDrawableSpacing="15dp"
+                        app:dropDownDrawableWidth="25dp"
+                        app:dropDownDrawableHeight="25dp"
+                        android:textColor="@color/white"
+                        android:editable="false"
+                        />
 
-
-
-
-
-
-
-
-
-
-
-
-
+                </LinearLayout>
 
 
                 <com.rengwuxian.materialedittext.MaterialEditText
@@ -232,9 +218,6 @@
                     app:met_singleLineEllipsis="true"
                     app:met_iconLeft="@drawable/edit"
                     />
-
-
-
 
                 <com.rengwuxian.materialedittext.MaterialEditText
                     android:id="@+id/edtDescription"
@@ -277,38 +260,41 @@
 
 
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
 
+                    <ImageView
+                        android:layout_marginStart="7dp"
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_terrain_white_24dp" />
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:text="*District"
-                    android:textSize="18sp"
-                    android:layout_marginRight="15dp"
-                    android:drawableStart="@drawable/ic_terrain_white_24dp"
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:text="*District"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
 
-                    />
+                    <com.reginald.editspinner.EditSpinner
+                        android:id="@+id/spn_Districts"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="*Select"
+                        android:textColorHint="@color/white"
+                        android:theme="@style/CategorySpinner"
+                        app:dropDownDrawable="@drawable/ic_add_white_24dp"
+                        app:dropDownDrawableSpacing="15dp"
+                        app:dropDownDrawableWidth="25dp"
+                        app:dropDownDrawableHeight="25dp"
+                        android:textColor="@color/white"
+                        android:editable="false"
+                        />
 
-                <com.reginald.editspinner.EditSpinner
-                    android:id="@+id/spn_Districts"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="*Select"
-                    android:textColorHint="@color/white"
-                    android:theme="@style/CategorySpinner"
-                    app:dropDownDrawable="@drawable/ic_add_white_24dp"
-                    app:dropDownDrawableSpacing="15dp"
-                    app:dropDownDrawableWidth="25dp"
-                    app:dropDownDrawableHeight="25dp"
-                    android:textColor="@color/white"
-                    android:editable="false" />
-
-            </LinearLayout>
+                </LinearLayout>
 
 
 
@@ -360,37 +346,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-<!--
-
-                <com.rengwuxian.materialedittext.MaterialEditText
-                    android:id="@+id/edtLocation"
-                    android:hint="*Location"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="@color/white"
-                    android:text=""
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:inputType="number"
-                    app:met_baseColor="@color/white"
-                    app:met_floatingLabel="highlight"
-                    app:met_primaryColor="@color/white"
-                    app:met_singleLineEllipsis="true"
-                    app:met_iconLeft="@drawable/location"
-                    />
-                    -->
-
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -400,18 +355,57 @@
                     android:drawableStart="@drawable/ic_location_on_white_24dp"
                     />
 
-                <!--Google Map -->
-                <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:name="com.google.android.gms.maps.SupportMapFragment"
-                    android:id="@+id/map"
+
+
+
+
+
+
+                <!-- Map and ImageView in center for simulating the map marker -->
+                <RelativeLayout
+                    android:id="@+id/confirm_address_map_wrapper"
                     android:layout_width="match_parent"
-                    android:layout_height="170dp"
-                    android:layout_marginBottom="10dp"/>
+                    android:layout_height="220dp">
+
+
+                        <fragment
+                            android:id="@+id/map"
+                            android:name="com.google.android.gms.maps.SupportMapFragment"
+                            android:layout_width="match_parent"
+                            android:layout_height="300dp"
+                            android:layout_centerInParent="true"
+                            />
+
+                        <!-- Image View that acts as map marker notice centerInParent-->
+                        <View
+                            android:id="@+id/view"
+                            android:layout_width="1dp"
+                            android:layout_height="1dp"
+                            android:layout_centerInParent="true"/>
+
+
+                        <ImageView
+                            android:id="@+id/confirm_address_map_custom_marker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@+id/view"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/location_marker"/>
+
+                </RelativeLayout>
 
 
 
 
-
+                <TextView
+                    android:id="@+id/tv_coordinates"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="coordinates"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="20dp"
+                    />
 
 
 
@@ -567,12 +561,8 @@
                         />
 
                 </LinearLayout>
-
-
             </LinearLayout>
-
-
         </RelativeLayout>
     </ScrollView>
-</android.support.design.widget.CoordinatorLayout>
 
+</android.support.design.widget.CoordinatorLayout>

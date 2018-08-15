@@ -1,6 +1,5 @@
 package com.example.kypros.versiononekap;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -14,17 +13,17 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.kypros.versiononekap.Common.Common;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DataSnapshot;
@@ -34,20 +33,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.reginald.editspinner.EditSpinner;
 import com.rengwuxian.materialedittext.MaterialEditText;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import info.hoang8f.widget.FButton;
 
-public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCallback {
+public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCallback, GoogleMap.OnCameraMoveStartedListener,
+        GoogleMap.OnCameraMoveListener,
+        GoogleMap.OnCameraMoveCanceledListener,
+        GoogleMap.OnCameraIdleListener {
 
-    private FirebaseAuth auth;
     private String prnt_cats = null;
     private Uri filePath;
     private Uri filePath2;
@@ -55,6 +54,17 @@ public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCal
     StorageReference storageReference;
     String currentUserEmail = "";
     String service_id = "";
+
+    String lat;
+    String lng;
+
+
+    EditSpinner parent_Category, child_Category, district_Spinner;
+    MaterialEditText edt_Title, edt_Description, edt_Price, edt_PostalCode, edt_Address,
+            edt_Timetable, edt_Name, edt_Email, edt_Phone, edt_Phone2, edt_Fax;
+
+    private GoogleMap googleMap;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,18 +77,19 @@ public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCal
         navigationView.getMenu().getItem(3).setChecked(true);
         //ADD BURGER MENU END ----------------------------------------------------------------------
 
+
         //Google Maps-------------------------------------------------------------------------------
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(AddNewServiceActivity.this);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
         //Google Maps-------------------------------------------------------------------------------
+
 
         //Init Firebase Storage
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
 
-        auth = FirebaseAuth.getInstance();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
         //If user is not logged in
         if (auth.getCurrentUser() == null) {
 
@@ -87,8 +98,7 @@ public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCal
             Intent myIntent = new Intent(getApplicationContext(), SignInActivity.class);
             startActivity(myIntent);
             finish();
-        }else if(auth.getCurrentUser() != null)
-        {
+        } else if (auth.getCurrentUser() != null) {
             for (UserInfo user : FirebaseAuth.getInstance().getCurrentUser().getProviderData()) {
 
                 currentUserEmail = user.getEmail();
@@ -110,7 +120,7 @@ public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCal
 
                 final List<String> parnt_cats = new ArrayList<String>();
 
-                for (DataSnapshot parentSnapshot: dataSnapshot.getChildren()) {
+                for (DataSnapshot parentSnapshot : dataSnapshot.getChildren()) {
                     String parent_category_name = parentSnapshot.child("parent_category_name").getValue(String.class);
                     parnt_cats.add(parent_category_name);
                 }
@@ -138,7 +148,7 @@ public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCal
 
                                 final List<String> child_name = new ArrayList<String>();
 
-                                for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
+                                for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
                                     String child_category_name = childSnapshot.child("child_category_name").getValue(String.class);
                                     child_name.add(child_category_name);
                                 }
@@ -155,7 +165,6 @@ public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCal
                             }
                         });
                     }
-
 
 
                 });
@@ -175,7 +184,7 @@ public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCal
 
                 final List<String> district_name = new ArrayList<String>();
 
-                for (DataSnapshot districtSnapshot: dataSnapshot.getChildren()) {
+                for (DataSnapshot districtSnapshot : dataSnapshot.getChildren()) {
                     String parent_category_name = districtSnapshot.child("district_name").getValue(String.class);
                     district_name.add(parent_category_name);
                 }
@@ -193,10 +202,8 @@ public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCal
         });
 
 
-
-
         //LOGO
-        ((FButton)findViewById(R.id.btnUploadLogo)).setOnClickListener(new View.OnClickListener() {
+        ((FButton) findViewById(R.id.btnUploadLogo)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -205,7 +212,7 @@ public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCal
         });
 
         //IMAGE
-        ((FButton)findViewById(R.id.btnUploadImage)).setOnClickListener(new View.OnClickListener() {
+        ((FButton) findViewById(R.id.btnUploadImage)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -214,30 +221,12 @@ public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCal
         });
 
 
-
-
         //SUBMIT to Firebase
-        ((FButton)findViewById(R.id.btnSubmit)).setOnClickListener(new View.OnClickListener() {
+        ((FButton) findViewById(R.id.btnSubmit)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 boolean error_checker = false;
-
-                EditSpinner parent_Category;
-                EditSpinner child_Category;
-                EditSpinner district_Spinner;
-                MaterialEditText edt_Title;
-                MaterialEditText edt_Description;
-                MaterialEditText edt_Price;
-                MaterialEditText edt_PostalCode;
-                MaterialEditText edt_Address;
-                MaterialEditText edt_Timetable;
-                MaterialEditText edt_Name;
-                MaterialEditText edt_Email;
-                MaterialEditText edt_Phone;
-                MaterialEditText edt_Phone2;
-                MaterialEditText edt_Fax;
-
 
                 parent_Category = (EditSpinner) findViewById(R.id.spn_Categories);
                 child_Category = (EditSpinner) findViewById(R.id.spn_child_cat);
@@ -255,49 +244,43 @@ public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCal
                 edt_Fax = (MaterialEditText) findViewById(R.id.edtFax);
 
 
-
                 //Logo------------------------------------------------------------------------------
-                if(filePath == null)
-                {
+                if (filePath == null) {
                     error_checker = true;
-                }else{
+                } else {
                     error_checker = false;
                 }
                 //----------------------------------------------------------------------------------
 
                 //Image-----------------------------------------------------------------------------
-                if(filePath2 == null)
-                {
+                if (filePath2 == null) {
 
                     error_checker = true;
-                }else{
+                } else {
                     error_checker = false;
                 }
                 //----------------------------------------------------------------------------------
 
                 //Parent category Spinner-----------------------------------------------------------
-                if(parent_Category.getText().toString().equals("*Select"))
-                {
+                if (parent_Category.getText().toString().equals("*Select")) {
                     error_checker = true;
-                }else{
+                } else {
                     error_checker = false;
                 }
                 //----------------------------------------------------------------------------------
 
                 //Child category Spinner------------------------------------------------------------
-                if(child_Category.getText().toString().equals("*Select"))
-                {
+                if (child_Category.getText().toString().equals("*Select")) {
                     error_checker = true;
-                }else{
+                } else {
                     error_checker = false;
                 }
                 //----------------------------------------------------------------------------------
 
                 //Title EditText--------------------------------------------------------------------
-                if(edt_Title.getText().toString().equals(""))
-                {
+                if (edt_Title.getText().toString().equals("")) {
                     error_checker = true;
-                }else{
+                } else {
                     error_checker = false;
 
 
@@ -305,110 +288,99 @@ public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCal
                 //----------------------------------------------------------------------------------
 
                 //Description EditText--------------------------------------------------------------
-                if(edt_Description.getText().toString().equals(""))
-                {
+                if (edt_Description.getText().toString().equals("")) {
                     error_checker = true;
-                }else{
+                } else {
                     error_checker = false;
 
                 }
                 //----------------------------------------------------------------------------------
 
                 //Price EditText--------------------------------------------------------------------
-                if(edt_Price.getText().toString().equals(""))
-                {
+                if (edt_Price.getText().toString().equals("")) {
                     error_checker = true;
-                }else{
+                } else {
                     error_checker = false;
 
                 }
                 //----------------------------------------------------------------------------------
 
                 //District Spinner------------------------------------------------------------------
-                if(district_Spinner.getText().toString().equals("*Select"))
-                {
+                if (district_Spinner.getText().toString().equals("*Select")) {
                     error_checker = true;
-                }else{
+                } else {
                     error_checker = false;
 
                 }
                 //----------------------------------------------------------------------------------
 
                 //Price EditText--------------------------------------------------------------------
-                if(edt_PostalCode.getText().toString().equals(""))
-                {
+                if (edt_PostalCode.getText().toString().equals("")) {
                     error_checker = true;
-                }else{
+                } else {
                     error_checker = false;
 
                 }
                 //----------------------------------------------------------------------------------
 
                 //Address EditText--------------------------------------------------------------------
-                if(edt_Address.getText().toString().equals(""))
-                {
+                if (edt_Address.getText().toString().equals("")) {
                     error_checker = true;
-                }else{
+                } else {
                     error_checker = false;
 
                 }
                 //----------------------------------------------------------------------------------
 
                 //Timetable EditText----------------------------------------------------------------
-                if(edt_Timetable.getText().toString().equals(""))
-                {
+                if (edt_Timetable.getText().toString().equals("")) {
                     error_checker = true;
-                }else{
+                } else {
                     error_checker = false;
 
                 }
                 //----------------------------------------------------------------------------------
 
                 //Name EditText---------------------------------------------------------------------
-                if(edt_Name.getText().toString().equals(""))
-                {
+                if (edt_Name.getText().toString().equals("")) {
                     error_checker = true;
-                }else{
+                } else {
                     error_checker = false;
 
                 }
                 //----------------------------------------------------------------------------------
 
                 //Email EditText--------------------------------------------------------------------
-                if(edt_Email.getText().toString().equals(""))
-                {
+                if (edt_Email.getText().toString().equals("")) {
                     error_checker = true;
-                }else{
+                } else {
                     error_checker = false;
 
                 }
                 //----------------------------------------------------------------------------------
 
                 //Phone EditText--------------------------------------------------------------------
-                if(edt_Phone.getText().toString().equals(""))
-                {
+                if (edt_Phone.getText().toString().equals("")) {
                     error_checker = true;
-                }else{
+                } else {
                     error_checker = false;
 
                 }
                 //----------------------------------------------------------------------------------
 
                 //Phone2 EditText-------------------------------------------------------------------
-                if(edt_Phone2.getText().toString().equals(""))
-                {
+                if (edt_Phone2.getText().toString().equals("")) {
                     error_checker = true;
-                }else{
+                } else {
                     error_checker = false;
 
                 }
                 //----------------------------------------------------------------------------------
 
                 //Fax EditText----------------------------------------------------------------------
-                if(edt_Fax.getText().toString().equals(""))
-                {
+                if (edt_Fax.getText().toString().equals("")) {
                     error_checker = true;
-                }else{
+                } else {
                     error_checker = false;
 
                 }
@@ -416,19 +388,14 @@ public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCal
 
 
                 //No Errors
-                if(!error_checker)
-                {
-
-
+                if (!error_checker) {
                     //Check internet Connectivity
-                    if(Common.isConnectedToInternet(getBaseContext())) {
+                    if (Common.isConnectedToInternet(getBaseContext())) {
 
                         services_model Service = new services_model();
 
                         uploadLogo();
                         uploadImage();
-
-
 
                         Service.setTitle(edt_Title.getText().toString().trim());
                         Service.setParent_category(parent_Category.getText().toString().trim());
@@ -453,41 +420,23 @@ public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCal
                         Service.setLogo_image("http://www.inyourhands.org.au/wp-content/uploads/2017/06/image1.jpg");
 
 
-
-
-
                         //Init Firebase
                         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Services").push();
                         service_id = mDatabase.getKey();
                         mDatabase.setValue(Service);
-
-
-
-                    }
-                    else
-                    {
+                    } else {
                         Toast.makeText(AddNewServiceActivity.this, "Please check your Internet connection!", Toast.LENGTH_SHORT).show();
 
                     }
 
-
-
-
-
                 }
-
-
 
 
             }
         });
 
 
-
-
-
     }//End OnCreate
-
 
 
     private void chooseLogo() {
@@ -508,32 +457,26 @@ public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCal
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        switch(requestCode){
+        switch (requestCode) {
             case 0: {
-                if(resultCode == RESULT_OK && data != null && data.getData() != null )
-                {
+                if (resultCode == RESULT_OK && data != null && data.getData() != null) {
                     filePath = data.getData();
                     try {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-                        ((ImageView)findViewById(R.id.imv_Logo)).setImageBitmap(bitmap);
-                    }
-                    catch (IOException e)
-                    {
+                        ((ImageView) findViewById(R.id.imv_Logo)).setImageBitmap(bitmap);
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
                 break;
             }
-            case 1:{
-                if(resultCode == RESULT_OK && data != null && data.getData() != null )
-                {
+            case 1: {
+                if (resultCode == RESULT_OK && data != null && data.getData() != null) {
                     filePath2 = data.getData();
                     try {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath2);
-                        ((ImageView)findViewById(R.id.imv_Image)).setImageBitmap(bitmap);
-                    }
-                    catch (IOException e)
-                    {
+                        ((ImageView) findViewById(R.id.imv_Image)).setImageBitmap(bitmap);
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
@@ -546,36 +489,26 @@ public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCal
 
     private void uploadLogo() {
 
-        if(filePath != null)
-        {
-
-            System.out.println("THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!: " + service_id);
-
-
+        if (filePath != null) {
             StorageReference ref = storageReference.child(currentUserEmail + "/" + service_id + "/" + "logo");
             ref.putFile(filePath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
                 }
-            })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
 
-                            Toast.makeText(AddNewServiceActivity.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
+                    Toast.makeText(AddNewServiceActivity.this, "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 
 
-
     private void uploadImage() {
-
-        if(filePath2 != null)
-        {
+        if (filePath2 != null) {
             System.out.println("THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!: " + service_id);
 
 
@@ -590,29 +523,90 @@ public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCal
                         @Override
                         public void onFailure(@NonNull Exception e) {
 
-                            Toast.makeText(AddNewServiceActivity.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddNewServiceActivity.this, "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
         }
     }
 
 
-
-
-
-
-
-
-
-
-
-
-    GoogleMap googleMap;//make it global
     @Override
-    public void onMapReady(final GoogleMap map) {
+    public void onMapReady(GoogleMap map) {
 
         googleMap = map;
+
+        googleMap.setOnCameraIdleListener(this);
+        googleMap.setOnCameraMoveStartedListener(this);
+        googleMap.setOnCameraMoveListener(this);
+        googleMap.setOnCameraMoveCanceledListener(this);
+
+        // Show Cyprus on the map.
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(35.1264, 33.4299), 8));
+
+
+
     }
+
+    @Override
+    public void onCameraMoveStarted(int reason) {
+
+        lat = Double.toString(googleMap.getCameraPosition().target.latitude);
+        lng = Double.toString(googleMap.getCameraPosition().target.longitude);
+
+        ((TextView)findViewById(R.id.tv_coordinates)).setText(lat + ", " + lng);
+
+
+
+
+
+
+
+
+
+        //Default = 0.0, 0.0
+
+
+
+        if (reason == GoogleMap.OnCameraMoveStartedListener.REASON_GESTURE) {
+
+            //Toast.makeText(this, "The user gestured on the map.", Toast.LENGTH_SHORT).show();
+
+        } else if (reason == GoogleMap.OnCameraMoveStartedListener.REASON_API_ANIMATION) {
+
+            //Toast.makeText(this, "The user tapped something on the map.", Toast.LENGTH_SHORT).show();
+
+        } else if (reason == GoogleMap.OnCameraMoveStartedListener.REASON_DEVELOPER_ANIMATION) {
+
+            //Toast.makeText(this, "The app moved the camera.", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+
+
+
+    @Override
+    public void onCameraMove () {
+
+        //Toast.makeText(this, "The camera is moving.", Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onCameraMoveCanceled () {
+
+        //Toast.makeText(this, "Camera movement canceled.", Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onCameraIdle () {
+
+        //Toast.makeText(this, "The camera has stopped moving.", Toast.LENGTH_SHORT).show();
+
+
+    }
+    
 
 
 }

@@ -4,40 +4,32 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.internal.NavigationMenu;
 import android.support.design.widget.NavigationView;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.kypros.versiononekap.Common.Common;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.melnykov.fab.FloatingActionButton;
 import com.squareup.picasso.Picasso;
-
 import info.hoang8f.widget.FButton;
-import io.github.yavski.fabspeeddial.FabSpeedDial;
 
 public class DisplayServiceDynamicActivity extends BaseActivity implements OnMapReadyCallback {
 
-    FabSpeedDial floatingCallIcon;
+    FloatingActionButton floatDirectionsIcon;
     public RatingBar ratingBar;
 
     @Override
@@ -98,6 +90,15 @@ public class DisplayServiceDynamicActivity extends BaseActivity implements OnMap
 
 
 
+
+
+
+
+
+
+
+
+
                 //Phone Buttons----------
                 ((FButton)findViewById(R.id.tv_service_phone)).setText(service.getPhone());
                 ((FButton)findViewById(R.id.tv_service_phone2)).setText(service.getPhone2());
@@ -141,57 +142,35 @@ public class DisplayServiceDynamicActivity extends BaseActivity implements OnMap
 
 
 
+
+
+
+
                 ((TextView)findViewById(R.id.tv_service_email)).setText(service.getEmail());
                 ((TextView)findViewById(R.id.tv_service_fax)).setText(service.getFax());
 
                 //BottomTVUser
                 ((TextView)findViewById(R.id.user_name_email)).setText(service.getUser_ID());
 
-                //OnClick Call button jump START -----------------------------------------------------------
-                floatingCallIcon = (FabSpeedDial) findViewById(R.id.floatingCallIcon);
 
-                floatingCallIcon.setMenuListener(new FabSpeedDial.MenuListener() {
-                    @Override
-                    public boolean onPrepareMenu(NavigationMenu navigationMenu) {
-                        return true;//false: dont show menu
-                    }
 
-                    @Override
-                    public boolean onMenuItemSelected(MenuItem menuItem) {
+                //OnClick Directions button jump START -----------------------------------------------------------
+                floatDirectionsIcon = (FloatingActionButton) findViewById(R.id.floatingDirectionsIcon);
 
-                        int item_id = menuItem.getItemId();
+                floatDirectionsIcon.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View arg0) {
 
-                       /* if(item_id == 2131230735)
-                        {
-                            startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", service.getPhone(), null)));
-                        }else */if(item_id == 2131230740)
-                        {
-                            String to = service.getEmail();
-                            Intent mail = new Intent(Intent.ACTION_SEND);
-                            mail.putExtra(Intent.EXTRA_EMAIL,new String[]{to});
-                            mail.setType("message/rfc822");
-                            startActivity(Intent.createChooser(mail, "Send email via:"));
-                        }
-                        else if(item_id == 2131230738)
-                        {
-                            // Create a Uri from an intent string. Use the result to create an Intent.
-                            Uri gmmIntentUri = Uri.parse("https://maps.google.com/maps?daddr=" + service.getLatitude() + "," + service.getLongitude());
-                            // Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW
-                            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                            // Make the Intent explicit by setting the Google Maps package
-                            mapIntent.setPackage("com.google.android.apps.maps");
-                            // Attempt to start an activity that can handle the Intent
-                            startActivity(mapIntent);
-                        }
-                        return true;
-                    }
-
-                    @Override
-                    public void onMenuClosed() {
-
+                        // Create a Uri from an intent string. Use the result to create an Intent.
+                        Uri gmmIntentUri = Uri.parse("https://maps.google.com/maps?daddr=" + service.getLatitude() + "," + service.getLongitude());
+                        // Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW
+                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                        // Make the Intent explicit by setting the Google Maps package
+                        mapIntent.setPackage("com.google.android.apps.maps");
+                        // Attempt to start an activity that can handle the Intent
+                        startActivity(mapIntent);
                     }
                 });
-                //On Call button click END -----------------------------------------------------------------
+                //On Directions button click END -----------------------------------------------------------------
 
 
             }
