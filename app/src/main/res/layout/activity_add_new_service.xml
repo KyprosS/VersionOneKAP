@@ -8,7 +8,7 @@
     tools:context=".AddNewServiceActivity">
 
     <ScrollView
-        android:id="@+id/scrollView"
+        android:id="@+id/sv_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -41,28 +41,6 @@
                     android:textColor="@color/white"
                     android:textSize="20dp"
                     />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                 <LinearLayout
@@ -130,8 +108,6 @@
                         />
 
                 </LinearLayout>
-
-
 
 
 
@@ -255,11 +231,6 @@
 
 
 
-
-
-
-
-
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="fill_parent"
@@ -295,13 +266,6 @@
                         />
 
                 </LinearLayout>
-
-
-
-
-
-
-
 
 
                 <com.rengwuxian.materialedittext.MaterialEditText
@@ -341,11 +305,6 @@
 
 
 
-
-
-
-
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -359,8 +318,6 @@
 
 
 
-
-
                 <!-- Map and ImageView in center for simulating the map marker -->
                 <RelativeLayout
                     android:id="@+id/confirm_address_map_wrapper"
@@ -369,11 +326,13 @@
 
 
                         <fragment
+                            android:tag="fragment_map"
                             android:id="@+id/map"
                             android:name="com.google.android.gms.maps.SupportMapFragment"
                             android:layout_width="match_parent"
                             android:layout_height="300dp"
                             android:layout_centerInParent="true"
+                            class="com.example.kypros.versiononekap.Common.WorkaroundMapFragment"
                             />
 
                         <!-- Image View that acts as map marker notice centerInParent-->
@@ -396,39 +355,15 @@
 
 
 
-
                 <TextView
                     android:id="@+id/tv_coordinates"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
-                    android:text="coordinates"
+                    android:text="Coordinates"
                     android:textSize="16sp"
                     android:layout_marginBottom="20dp"
                     />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 <com.rengwuxian.materialedittext.MaterialEditText
                     android:id="@+id/edtTimetable"

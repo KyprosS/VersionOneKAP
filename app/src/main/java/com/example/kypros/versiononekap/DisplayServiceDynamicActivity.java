@@ -11,7 +11,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
+
+import com.example.kypros.versiononekap.Common.WorkaroundMapFragment;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -31,6 +34,7 @@ public class DisplayServiceDynamicActivity extends BaseActivity implements OnMap
 
     FloatingActionButton floatDirectionsIcon;
     public RatingBar ratingBar;
+    private ScrollView mScrollView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -185,7 +189,14 @@ public class DisplayServiceDynamicActivity extends BaseActivity implements OnMap
 
 
 
+        mScrollView = (ScrollView) findViewById(R.id.sv_container);
 
+        ((WorkaroundMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).setListener(new WorkaroundMapFragment.OnTouchListener() {
+            @Override
+            public void onTouch() {
+                mScrollView.requestDisallowInterceptTouchEvent(true);
+            }
+        });
 
 
     }//onCreate END

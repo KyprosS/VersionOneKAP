@@ -20,7 +20,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -41,6 +40,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import info.hoang8f.widget.FButton;
+import com.example.kypros.versiononekap.Common.WorkaroundMapFragment;
+import android.widget.ScrollView;
+
 
 public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCallback, GoogleMap.OnCameraMoveStartedListener,
         GoogleMap.OnCameraMoveListener,
@@ -57,6 +59,8 @@ public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCal
 
     String lat;
     String lng;
+
+    private ScrollView mScrollView;
 
 
     EditSpinner parent_Category, child_Category, district_Spinner;
@@ -436,6 +440,55 @@ public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCal
         });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //onGoogle Map touch disable screen scroll
+        mScrollView = (ScrollView) findViewById(R.id.sv_container);
+        ((WorkaroundMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).setListener(new WorkaroundMapFragment.OnTouchListener() {
+            @Override
+            public void onTouch() {
+                mScrollView.requestDisallowInterceptTouchEvent(true);
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }//End OnCreate
 
 
@@ -550,10 +603,7 @@ public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCal
     @Override
     public void onCameraMoveStarted(int reason) {
 
-        lat = Double.toString(googleMap.getCameraPosition().target.latitude);
-        lng = Double.toString(googleMap.getCameraPosition().target.longitude);
 
-        ((TextView)findViewById(R.id.tv_coordinates)).setText(lat + ", " + lng);
 
 
 
@@ -571,14 +621,13 @@ public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCal
 
             //Toast.makeText(this, "The user gestured on the map.", Toast.LENGTH_SHORT).show();
 
-        } else if (reason == GoogleMap.OnCameraMoveStartedListener.REASON_API_ANIMATION) {
+        }else if (reason == GoogleMap.OnCameraMoveStartedListener.REASON_API_ANIMATION) {
 
             //Toast.makeText(this, "The user tapped something on the map.", Toast.LENGTH_SHORT).show();
 
-        } else if (reason == GoogleMap.OnCameraMoveStartedListener.REASON_DEVELOPER_ANIMATION) {
+        }else if (reason == GoogleMap.OnCameraMoveStartedListener.REASON_DEVELOPER_ANIMATION) {
 
             //Toast.makeText(this, "The app moved the camera.", Toast.LENGTH_SHORT).show();
-
         }
     }
 
@@ -587,6 +636,9 @@ public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCal
 
     @Override
     public void onCameraMove () {
+        lat = Double.toString(googleMap.getCameraPosition().target.latitude);
+        lng = Double.toString(googleMap.getCameraPosition().target.longitude);
+        ((TextView)findViewById(R.id.tv_coordinates)).setText(lat + ", " + lng);
 
         //Toast.makeText(this, "The camera is moving.", Toast.LENGTH_SHORT).show();
 
@@ -606,7 +658,7 @@ public class AddNewServiceActivity extends BaseActivity implements OnMapReadyCal
 
 
     }
-    
+
 
 
 }
